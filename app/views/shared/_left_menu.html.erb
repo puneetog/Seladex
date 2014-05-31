@@ -33,6 +33,19 @@
                         <!-- </a> -->
                     </li>
                 <% end %>
+
+                <% if can? :create, User %>
+                     <li>
+                        <%= link_to admin_users_path do %>
+                        <!-- <a href="index.html"> -->
+                            User 
+                            <div>
+                                <img src="/assets/img/icons/cog.png" alt="">
+                            </div>
+                        <% end %>
+                        <!-- </a> -->
+                    </li>
+                <% end %>
                 <!-- <li>
                     <a>
                         Layouts

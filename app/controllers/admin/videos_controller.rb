@@ -10,11 +10,13 @@ class Admin::VideosController < ApplicationController
 	  @admin_video = Admin::Video.last
 	  video_status = if @admin_video.present?
 	    @admin_video.update(admin_video_params)
+	    
 	  else
 	   @admin_video = Admin::Video.new(admin_video_params)
 	   @admin_video.save		 
 	  end		
 	  if video_status
+	  	flash[:message] = "Video Successfully saved."
 	    redirect_to new_admin_video_path
 	  else
 	    render 'new'
