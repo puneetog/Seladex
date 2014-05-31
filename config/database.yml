@@ -3,8 +3,8 @@ development:
   encoding: unicode
   database: seladex_development
   pool: 5
-  username: vagrant
-  password: vagrant
+  username: postgres
+  password: postgres
   port: 5432
   timeout: 5000
 
