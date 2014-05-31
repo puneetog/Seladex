@@ -1,0 +1,30 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: seladex_development
+  pool: 5
+  username: vagrant
+  password: vagrant
+  port: 5432
+  timeout: 5000
+
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: seladex_test
+  pool: 5
+  username: vagrant
+  password: vagrant
+  port: 5432  
+  timeout: 5000
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: seladex_development
+  pool: 5
+  username: vagrant
+  password: vagrant
+  port: 5432  
+  timeout: 5000
