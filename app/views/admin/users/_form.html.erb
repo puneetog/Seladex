@@ -64,14 +64,14 @@
 								</div>
 	                    	</div>
 
-	                    	<div class="form-group">
-	                    		<p class="text-muted">
+	                    	<div>
+	                    		
 						  			<small>Role</small>
-						  		</p>
-			                    <div class="input-group" data-role="acknowledge-input" >
+						  		
+			                    <div>
 			                    	 <%= f.select :role, User::ROLES.map{|role| role.to_s.humanize}, {prompt: "Select a Role"}, {class: "form-control select-user-form"}%>
 								  <!-- <input type="text" required="required" placeholder="Email Required" class="form-control" data-type="email" > -->
-								  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+								  
 								</div>
 	                    	</div>
 	                        <div class="form-group">
@@ -79,6 +79,4 @@
 	                        </div>
 	                    </div>
                 	<!-- </div> -->
-
-
                 <% end %>
