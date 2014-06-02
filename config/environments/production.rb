@@ -27,7 +27,7 @@ Seladex::Application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs.
   config.assets.digest = true
@@ -55,7 +55,8 @@ Seladex::Application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = "http://obscure-river-2832.herokuapp.com/"
+  config.action_controller.asset_host = "http://localhost:4000"
+  config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
