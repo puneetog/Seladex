@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+user = User.new(email: "admin@seladex.com",
+                name: "Admin" 
+	            password: "password", 
+	            password_confirmation: "password",
+	            role: "admin"
+	            )
