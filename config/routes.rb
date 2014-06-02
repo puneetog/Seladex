@@ -1,5 +1,9 @@
 Seladex::Application.routes.draw do
 
+  get "stores/index"
+  get "stores/update"
+  get "stores/create"
+  get "stores/edit"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   # You can have the root of your site routed with "root"
@@ -15,6 +19,7 @@ Seladex::Application.routes.draw do
     namespace :admin do
       resources :videos
       resources :users
+      resources :stores
     end
   # Example resource route with options:
   #   resources :products do

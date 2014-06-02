@@ -145,13 +145,13 @@
 
 .footer{
   max-width: 960px;
-margin: 0 auto;
+  margin: 0 auto;
 }
 
 .select-user-form{
   border: 1px solid #ccc;
-width: 30%;
-padding: 10px;
-font-size: 16px;
-color: #999;
+  width: 30%;
+  padding: 10px;
+  font-size: 16px;
+  color: #999;
 }

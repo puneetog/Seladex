@@ -7,8 +7,8 @@
                     </div>
                     <div class="content">
                         <img class="img-circle" height="54" src="/assets/img/user.jpg" alt="">
-                        <p>Micheal Lance
-                            <br />
+                        <p><%= current_user.name.present? ? current_user.name.try(:humanize) : "Seladex User"%>
+                             <br /> 
                             <small>Lorem ipsum dolor sit amet</small>
                         </p>
                     </div>
@@ -34,16 +34,25 @@
                     </li>
                 <% end %>
 
+                <% if can? :create, Store %>
+                     <li>
+                        <%= link_to admin_stores_path do %>
+                            Store 
+                            <div>
+                                <img src="/assets/img/icons/layers.png" alt="">
+                            </div>
+                        <% end %>
+                    </li>
+                <% end %>
+
                 <% if can? :create, User %>
                      <li>
                         <%= link_to admin_users_path do %>
-                        <!-- <a href="index.html"> -->
                             User 
                             <div>
                                 <img src="/assets/img/icons/cog.png" alt="">
                             </div>
                         <% end %>
-                        <!-- </a> -->
                     </li>
                 <% end %>
                 <!-- <li>
