@@ -14,16 +14,16 @@
                     </div>
                 </li>
                 <li>
-                    <a href="/">
+                         <%= link_to root_path, title: "Dashboard" do %>
                         Dashboard 
                         <div>
                             <img src="/assets/img/icons/dashboard.png" alt="">
                         </div>
-                    </a>
+                        <% end %>
                 </li>
                 <% if can? :create, Admin::Video %>
                      <li>
-                        <%= link_to new_admin_video_path do %>
+                        <%= link_to new_admin_video_path, title: "Video" do %>
                         <!-- <a href="index.html"> -->
                             Video 
                             <div>
@@ -36,7 +36,7 @@
 
                 <% if can? :create, Store %>
                      <li>
-                        <%= link_to admin_stores_path do %>
+                        <%= link_to admin_stores_path, title: "Store" do %>
                             Store 
                             <div>
                                 <img src="/assets/img/icons/layers.png" alt="">
@@ -47,7 +47,7 @@
 
                 <% if can? :create, User %>
                      <li>
-                        <%= link_to admin_users_path do %>
+                        <%= link_to admin_users_path, title: "User" do %>
                             User 
                             <div>
                                 <img src="/assets/img/icons/cog.png" alt="">

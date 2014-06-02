@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :stores, dependent: :destroy
 
   def role?(user_role)  	
-  	self.role.to_s == user_role.to_s
+  	self.role.try(:downcase).to_s == user_role.try(:downcase).to_s
   end
 
 end
