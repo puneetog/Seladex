@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # validates :name, presence: true
   ROLES = [:admin, :user]
 
-  has_many :stores, dependent: :destroy
+  belongs_to :store
 
   def role?(user_role)  	
   	self.role.try(:downcase).to_s == user_role.try(:downcase).to_s

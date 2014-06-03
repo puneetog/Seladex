@@ -1,17 +1,18 @@
-# development:
-#   adapter: postgresql
-#   encoding: unicode
-#   database: seladex_development
-#   pool: 5
-#   username: postgres
-#   password: postgres
-#   port: 5432
-#   timeout: 5000
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: seladex_development
   pool: 5
+  username: vagrant
+  password: vagrant
+  port: 5432
   timeout: 5000
+  
+# development:
+#   adapter: sqlite3
+#   database: db/development.sqlite3
+#   pool: 5
+#   timeout: 5000
 
 
 # test:
@@ -24,12 +25,12 @@ development:
 #   port: 5432  
 #   timeout: 5000
 
-# production:
-#   adapter: postgresql
-#   encoding: unicode
-#   database: seladex_development
-#   pool: 5
-#   username: vagrant
-#   password: vagrant
-#   port: 5432  
-#   timeout: 5000
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: seladex_development
+  pool: 5
+  username: vagrant
+  password: vagrant
+  port: 5432  
+  timeout: 5000

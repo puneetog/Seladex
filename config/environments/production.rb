@@ -78,4 +78,6 @@ Seladex::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  ADMIN_EMAIL="admin@seladex.com"
 end

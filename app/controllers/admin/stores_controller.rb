@@ -39,7 +39,9 @@ class Admin::StoresController < ApplicationController
   private
   def store_params
   	# binding.pry  	 
-    params.require(:store).permit(:name, :email, :password, :password_confirmation, :role)
+    params.require(:store).permit(:name, :email, :manufacturer, :contact, 
+                                  :address, :city, :state, :zip, :country, 
+                                  :phone, :fax, :website)
   end
 
   def check_authorize_resource

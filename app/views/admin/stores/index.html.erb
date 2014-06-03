@@ -10,6 +10,7 @@
 	                                        <th>Name</th>
 	                                        <th>Date registered</th>
 	                                        <th>Email</th>
+	                                        <th>Status</th>
 	                                        <th></th>
 	                                    </tr>
 	                                </thead>
@@ -18,7 +19,8 @@
 		                                    <tr>
 		                                        <td><%= store.email %> </td>
 		                                        <td><%= store.created_at.strftime("%Y/%m/%d") %></td>
-		                                        <td><%= store.name.try(:humanize) %></td>                              
+		                                        <td><%= store.name.try(:humanize) %></td>               
+		                                        <td><%= store.store_status %></td>               
 		                                        <td><%= link_to "Edit", edit_admin_store_path(store) %></td>                              
 		                                    </tr>
 	                                    <% end %>

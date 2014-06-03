@@ -253,7 +253,7 @@ footer {
 
 /* ---------- Nav Styles ---------- */
 
-.navbar { 
+/*.navbar { 
 	border: 0;
 	min-height: 30px;
 	margin-bottom: 0;
@@ -273,7 +273,7 @@ footer {
 	float: right;
 	margin-right: 5px; }
 
-.nav > li { float: left; }
+.nav > li { float: left; }*/
 
 /* Menu Overlay */
 .overlay {
