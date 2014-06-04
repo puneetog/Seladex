@@ -5,13 +5,12 @@ gem 'rails', '4.0.3'
 
 # Use sqlite3 as the database for Active Record
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
-
-group :development do
-  gem 'sqlite3'
-end
+gem 'pg'
+# group :development do
+#   gem 'sqlite3'
+# end
 # gem 'sqlite3'
 
 # Use SCSS for stylesheets
@@ -46,6 +45,7 @@ gem 'cancan'
 group :development do
 	gem 'pry'
 end
+gem 'activerecord-postgres-hstore'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

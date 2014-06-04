@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   # validates :name, presence: true
   ROLES = [:admin, :user]
-
+  has_many :stores, through: :user_store_managements
   belongs_to :store
 
   def role?(user_role)  	
