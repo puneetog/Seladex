@@ -46,14 +46,15 @@ class Admin::StoresController < ApplicationController
 
   
   private
+  
   def store_params
-  	# binding.pry  	   
+  	# binding.pry
     if user_signed_in? and current_user.admin? 
       params.require(:store).permit(:name, :email, :manufacturer, :contact, 
                                   :address, :city, :state, :zip, :country, 
                                   :phone, :fax, :website, :status, :user_password)
     else
-       params.require(:store).permit(:name, :email, :manufacturer, :contact, 
+      params.require(:store).permit(:name, :email, :manufacturer, :contact, 
                                   :address, :city, :state, :zip, :country, 
                                   :phone, :fax, :website, :user_password)
     end

@@ -80,4 +80,13 @@ Seladex::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   ADMIN_EMAIL="admin@seladex.com"
+
+    config.action_mailer.delivery_method = :smtp
+    ActionMailer::Base.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => 'vishuatongraph@gmail.com',
+    :password             => 'vishu123',
+    :authentication       => 'login',
+    :enable_starttls_auto => true  }
 end
