@@ -9,7 +9,7 @@ class Notification < ActionMailer::Base
 
   def send_store_confirmation(obj)
 
-    @store = store
+    @store = obj
     # @url  = 'http://example.com/login'
     mail(to: ADMIN_EMAIL, subject: 'Store Confirmation')
   end

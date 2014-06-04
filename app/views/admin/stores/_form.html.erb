@@ -16,9 +16,9 @@
                   <!-- <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"> -->
 
                       <div class="well short-form">
-                        <div class="header">Store Page
-                        <!--  <a class="headerclose"><i class="fa fa-times pull-right"></i></a> <a class="headerrefresh"><i class="fa fa-refresh pull-right"></i></a> <a class="headershrink"><i class="fa fa-chevron-down pull-right"></i></a> -->
-                        </div>
+                    <!--     <div class="header">Store Page
+                         <a class="headerclose"><i class="fa fa-times pull-right"></i></a> <a class="headerrefresh"><i class="fa fa-refresh pull-right"></i></a> <a class="headershrink"><i class="fa fa-chevron-down pull-right"></i></a>
+                        </div> -->
                   <div class="form-group">
                     <p class="text-muted">
                       <small>Name</small>
@@ -149,18 +149,18 @@
                     </div>
                   </div>
 
-                  <div>
-                          
+                  <div class="form-group">
+                    <p class="text-muted">      
                     <small>Status</small>
-                  
-                          <div>
+                    </p>
+                          <div >
                              <%= f.select :status, options_for_select([["Active", true], ["Deactive", false]]), {prompt: "Select status"}, {class: "form-control select-user-form"}%>
                   <!-- <input type="text" required="required" placeholder="Email Required" class="form-control" data-type="email" > -->
                   
                 </div>
                         </div>
 
-                  <div>
+                  <div class="form-group">
                     <%= f.submit "Save", class: "btn btn-default btn-lg"%>
                   </div>
               </div>

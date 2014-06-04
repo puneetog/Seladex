@@ -2,6 +2,7 @@ class Admin::StoresController < ApplicationController
 
    # load_and_authorize_resource
   before_filter :check_authorize_resource
+  skip_before_action :authenticate_user!, only: [:create, :new]
 
   def index
   	@stores = Store.all
@@ -45,7 +46,7 @@ class Admin::StoresController < ApplicationController
   end
 
   def check_authorize_resource
-    unless can? :create, Store
+    if can? [:read], Store
     	flash[:error] = "Access Denied"
     	redirect_to root_path
     end
