@@ -2,6 +2,7 @@ class Admin::StoresController < ApplicationController
 
    # load_and_authorize_resource
   before_filter :check_authorize_resource
+  skip_before_action :authenticate_user!, only: [:create, :new]
 
   def index
   	@stores = Store.all
@@ -26,10 +27,11 @@ class Admin::StoresController < ApplicationController
   end
 
   def create
-  	 @store = Store.new(store_params)
-  	if @store.save
+  	store = Store.new(store_params)
+    user = User.new(email: store_params[:email], name: store_params[:name])
+  	if store.save
   	  flash[:message] = "Store Successfully created."
-      redirect_to admin_stores_path
+      redirect_to (user_signed_in? and current_user.admin?) ? admin_stores_path : root_path       
 	else
 	  render 'new'
 	end
@@ -45,7 +47,7 @@ class Admin::StoresController < ApplicationController
   end
 
   def check_authorize_resource
-    unless can? :create, Store
+    if can? [:read], Store
     	flash[:error] = "Access Denied"
     	redirect_to root_path
     end

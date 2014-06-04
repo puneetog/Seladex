@@ -24,14 +24,14 @@
       <a class="close" href="javascript:void(0)" id="close_alert">×</a>
       <p> <%= value %> </p>
     </div>
-</div>
-  <% end %>
+  </div>
+<% end %>
   <% if user_signed_in? %>
     <%= render "shared/left_menu" %>
   <% end %>
 
 
-        <%=render "shared/header" %>
+       <%=render "shared/header" %>
        <div class="container">
           <%= yield %>
         <%=render "shared/footer" %>

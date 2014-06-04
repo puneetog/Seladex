@@ -5,12 +5,19 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # validates :name, presence: true
-  ROLES = [:admin, :user]
+  ROLES = [:admin, :store_admin, :user]
   has_many :stores, through: :user_store_managements
   belongs_to :store
 
+  ROLES.each do |role|
+      # define methods such as user?, admin? etc.
+      define_method "#{role}?" do
+        self.role.try(:downcase).to_sym == role
+      end
+    end
+
   def role?(user_role)  	
   	self.role.try(:downcase).to_s == user_role.try(:downcase).to_s
-  end
+  end  
 
 end
