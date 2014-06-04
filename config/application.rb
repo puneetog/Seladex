@@ -33,7 +33,7 @@ module Seladex
     # config.i18n.default_locale = :de
 
 
-    config.active_record.schema_format = :sql
+    
 
       # config.to_prepare do
       #   Devise::SessionsController.layout "devise"
