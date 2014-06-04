@@ -27,10 +27,11 @@ class Admin::StoresController < ApplicationController
   end
 
   def create
-  	 @store = Store.new(store_params)
-  	if @store.save
+  	store = Store.new(store_params)
+    user = User.new(email: store_params[:email], name: store_params[:name])
+  	if store.save
   	  flash[:message] = "Store Successfully created."
-      redirect_to admin_stores_path
+      redirect_to (user_signed_in? and current_user.admin?) ? admin_stores_path : root_path       
 	else
 	  render 'new'
 	end

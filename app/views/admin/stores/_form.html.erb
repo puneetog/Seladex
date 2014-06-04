@@ -148,18 +148,18 @@
                         <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
                     </div>
                   </div>
-
-                  <div class="form-group">
-                    <p class="text-muted">      
-                    <small>Status</small>
-                    </p>
-                          <div >
-                             <%= f.select :status, options_for_select([["Active", true], ["Deactive", false]]), {prompt: "Select status"}, {class: "form-control select-user-form"}%>
-                  <!-- <input type="text" required="required" placeholder="Email Required" class="form-control" data-type="email" > -->
-                  
-                </div>
-                        </div>
-
+                 <% if user_signed_in? and current_user.admin? %>
+                    <div class="form-group">
+                      <p class="text-muted">      
+                      <small>Status</small>
+                      </p>
+                        <div >
+                               <%= f.select :status, options_for_select([["Active", true], ["Deactive", false]]), {prompt: "Select status"}, {class: "form-control select-user-form"}%>
+                        <!-- <input type="text" required="required" placeholder="Email Required" class="form-control" data-type="email" > -->
+                        
+                         </div>
+                    </div>
+                  <% end %>
                   <div class="form-group">
                     <%= f.submit "Save", class: "btn btn-default btn-lg"%>
                   </div>
