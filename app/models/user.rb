@@ -5,9 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # validates :name, presence: true
-  ROLES = [:admin, :store_admin, :user]
 
-  belongs_to :store
+  ROLES = [:admin, :store_admin, :user]
+  
+  has_many :stores, through: :user_store_managements
+
 
   ROLES.each do |role|
       # define methods such as user?, admin? etc.
