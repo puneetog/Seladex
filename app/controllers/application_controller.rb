@@ -14,4 +14,9 @@ class ApplicationController < ActionController::Base
 	  flash[:error] = "Access denied."
 	  redirect_to root_url
 	end
+
+  def get_random_string
+    opt = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+      string = (0...8).map { opt[rand(opt.length)] }.join
+  end
 end

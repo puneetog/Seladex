@@ -40,7 +40,8 @@
 
                 <% if can? :create, Store %>
                      <li>
-                        <%= link_to admin_stores_path, title: "Store" do %>
+                        <% store_path = current_user.admin? ? admin_stores_path : edit_admin_store_path(current_user.stores.first)%>
+                        <%= link_to store_path, title: "Store" do %>
                             Store 
                             <div>
                                 <img src="/assets/img/icons/layers.png" alt="">
