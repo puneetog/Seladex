@@ -6,10 +6,9 @@ class User < ActiveRecord::Base
 
   # validates :name, presence: true
 
-  ROLES = [:admin, :store_admin, :user]
+  ROLES = [:admin, :organization_admin, :user]
 
-  has_many :user_store_managements
-  has_many :stores, through: :user_store_managements
+
 
 
   ROLES.each do |role|
@@ -22,5 +21,9 @@ class User < ActiveRecord::Base
   def role?(user_role)  	
   	self.role.try(:downcase).to_s == user_role.try(:downcase).to_s
   end  
+
+  def name
+    "#{first_name} #{last_name}"
+  end
 
 end

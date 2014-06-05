@@ -12,142 +12,151 @@
 	</ul>
 </div>
 <% end %>
-<div class="well">
+<div class="well cust_form">
 <div class="header">User Page
 </div>
-<div class="form-group">
-	<p class="text-muted">
-			<small>Name</small>
-		</p>
-    <div class="input-group" data-role="acknowledge-input">
-    	<%= f.text_field :name, required: "required", placeholder: "Name Required", class: "form-control" %>
-	
-	  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+ <div class="pull-left col-md-5">
+	<div class="form-group">
+		<p class="text-muted">
+				<small>First Name</small>
+			</p>
+	    <div class="input-group" data-role="acknowledge-input">
+	    	<%= f.text_field :first_name, required: "required", placeholder: "First Name", class: "form-control" %>
+		
+		  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+		</div>
+	</div> 
+	<div class="form-group">
+		<p class="text-muted">
+				<small>Last Name</small>
+			</p>
+	    <div class="input-group" data-role="acknowledge-input">
+	    	<%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
+		  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+		</div>
 	</div>
-</div> 
-<div class="form-group">
-	<p class="text-muted">
-			<small>Last Name</small>
-		</p>
-    <div class="input-group" data-role="acknowledge-input">
-    	<%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
-	  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+	<div class="form-group">
+		<p class="text-muted">
+				<small>Email</small>
+			</p>
+	    <div class="input-group" data-role="acknowledge-input">
+	    	<%= f.text_field :email, required: "required", placeholder: "Email", class: "form-control" %>
+		  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+		</div>
 	</div>
-</div>
-<div class="form-group">
-	<p class="text-muted">
-			<small>Email</small>
-		</p>
-    <div class="input-group" data-role="acknowledge-input">
-    	<%= f.text_field :email, required: "required", placeholder: "Email", class: "form-control" %>
-	  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
-	</div>
-</div>
 
-<div class="form-group">
-	<p class="text-muted">
-			<small>Password</small>
-		</p>
-    <div class="input-group" data-role="acknowledge-input">
-    	<%= f.password_field :password, required: "required", placeholder: "Password", class: "form-control" %>
-	 <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
-	  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
-	</div>
-</div>	
-
-<div class="form-group">
-	<p class="text-muted">
-			<small>Password Confirmation</small>
-		</p>
-    <div class="input-group" data-role="acknowledge-input">
-    	<%= f.password_field :password_confirmation, required: "required", placeholder: "Password Confirmation", class: "form-control" %>
-	 <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
-	  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
-	</div>
-</div>
-
-<div class="form-group">
-	<p class="text-muted">
-			<small>Initials</small>
-		</p>
-    <div class="input-group" data-role="acknowledge-input">
-    	<%= f.text_field :initial, placeholder: "Initials", class: "form-control" %>
-	  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+	<div class="form-group">
+		<p class="text-muted">
+				<small>Password</small>
+			</p>
+	    <div class="input-group" data-role="acknowledge-input">
+	    	<%= f.password_field :password, required: "required", placeholder: "Password", class: "form-control" %>
+		 <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
+		  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+		</div>
 	</div>	
-</div>
-<div class="form-group">
-	<p class="text-muted">
-			<small>Address</small>
-		</p>
-    <div class="input-group" data-role="acknowledge-input">
-    	<%= f.text_field :address, placeholder: "Address", class: "form-control" %>
-	  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
-	</div>
-</div>
-<div class="form-group">
-	<p class="text-muted">
-			<small>City</small>
-		</p>
-    <div class="input-group" data-role="acknowledge-input">
-    	<%= f.text_field :city, placeholder: "City", class: "form-control" %>
-	  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
-	</div>
-</div>
-<div class="form-group">
-	<p class="text-muted">
-			<small>State</small>
-		</p>
-    <div class="input-group" data-role="acknowledge-input">
-    	<%= f.text_field :state, placeholder: "State", class: "form-control" %>
-	 <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
-	  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
-	</div>
-</div>
-<div class="form-group">
-	<p class="text-muted">
-			<small>Country</small>
-		</p>
-    <div class="input-group" data-role="acknowledge-input">
-    	<%= f.text_field :country, placeholder: "Country", class: "form-control" %>
-	  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
-	</div>
-</div>
-<div class="form-group">
-	<p class="text-muted">
-			<small>Zip</small>
-		</p>
-    <div class="input-group" data-role="acknowledge-input">
-    	<%= f.text_field :zip, placeholder: "Zip", class: "form-control" %>
-	  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
-	</div>
-</div>
-<div class="form-group">
-	<p class="text-muted">
-			<small>Cell Phone</small>
-		</p>
-    <div class="input-group" data-role="acknowledge-input">
-    	<%= f.text_field :cell_phone, placeholder: "Cell Phone", class: "form-control" %>
-	  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
-	</div>
-</div>
-<div class="form-group">
-	<p class="text-muted">
-			<small>Home Phone</small>
-		</p>
-    <div class="input-group" data-role="acknowledge-input">
-    	<%= f.text_field :home_phone, placeholder: "Home Phone", class: "form-control" %>
-	  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
-	</div>
-</div>
-<div>
-		<small>Role</small>
-    <div>
-    	 <%= f.select :role, User::ROLES.map{|role| role.to_s.humanize}, {prompt: "Select a Role"}, {class: "form-control select-user-form"}%>
 
+	<div class="form-group">
+		<p class="text-muted">
+				<small>Password Confirmation</small>
+			</p>
+	    <div class="input-group" data-role="acknowledge-input">
+	    	<%= f.password_field :password_confirmation, required: "required", placeholder: "Password Confirmation", class: "form-control" %>
+		 <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
+		  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<p class="text-muted">
+				<small>Initials</small>
+			</p>
+	    <div class="input-group" data-role="acknowledge-input">
+	    	<%= f.text_field :initial, placeholder: "Initials", class: "form-control" %>
+		  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+		</div>	
+	</div>
+	<div class="form-group">
+		<p class="text-muted">
+				<small>Address</small>
+			</p>
+	    <div class="input-group" data-role="acknowledge-input">
+	    	<%= f.text_field :address, placeholder: "Address", class: "form-control" %>
+		  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+		</div>
 	</div>
 </div>
-<div class="form-group">
+
+ <div class="pull-right col-md-5">
+	<div class="form-group">
+		<p class="text-muted">
+				<small>City</small>
+			</p>
+	    <div class="input-group" data-role="acknowledge-input">
+	    	<%= f.text_field :city, placeholder: "City", class: "form-control" %>
+		  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+		</div>
+	</div>
+	<div class="form-group">
+		<p class="text-muted">
+				<small>State</small>
+			</p>
+	    <div class="input-group" data-role="acknowledge-input">
+	    	<%= f.text_field :state, placeholder: "State", class: "form-control" %>
+		 <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
+		  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+		</div>
+	</div>
+	<div class="form-group">
+		<p class="text-muted">
+				<small>Country</small>
+			</p>
+	    <div class="input-group" data-role="acknowledge-input">
+	    	<%= f.text_field :country, placeholder: "Country", class: "form-control" %>
+		  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+		</div>
+	</div>
+	<div class="form-group">
+		<p class="text-muted">
+				<small>Zip</small>
+			</p>
+	    <div class="input-group" data-role="acknowledge-input">
+	    	<%= f.text_field :zip, placeholder: "Zip", class: "form-control" %>
+		  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+		</div>
+	</div>
+	<div class="form-group">
+		<p class="text-muted">
+				<small>Cell Phone</small>
+			</p>
+	    <div class="input-group" data-role="acknowledge-input">
+	    	<%= f.text_field :cell_phone, placeholder: "Cell Phone", class: "form-control" %>
+		  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+		</div>
+	</div>
+	<div class="form-group">
+		<p class="text-muted">
+				<small>Home Phone</small>
+			</p>
+	    <div class="input-group" data-role="acknowledge-input">
+	    	<%= f.text_field :home_phone, placeholder: "Home Phone", class: "form-control" %>
+		  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+		</div>
+	</div>
+  </div>
+   <div class="pull-left col-md-5 clear">
+	<div class="form-group">
+		<p class="text-muted">      
+          <small>Role</small>
+        </p>		
+	    <div>
+	    	 <%= f.select :role, User::ROLES.map{|role| role.to_s.humanize}, {prompt: "Select a Role"}, {class: "form-control select-user-form"}%>
+
+		</div>
+	</div>
+<div class="form-group clear">
 	<%= f.submit "Save", class: "btn btn-default btn-lg"%>
+</div>
 </div>
 </div>
 <!-- </div> -->

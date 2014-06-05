@@ -38,11 +38,11 @@
                     </li>
                 <% end %>
 
-                <% if can? :create, Store %>
+                <% if can? :create, Organization %>
                      <li>
-                        <% store_path = current_user.admin? ? admin_stores_path : edit_admin_store_path(current_user.stores.first)%>
-                        <%= link_to store_path, title: "Store" do %>
-                            Store 
+                        <% organization_path = current_user.admin? ? organizations_path : edit_organization_path(current_user.organizations.first)%>
+                        <%= link_to organization_path, title: "Organization" do %>
+                            Organization 
                             <div>
                                 <img src="/assets/img/icons/layers.png" alt="">
                             </div>

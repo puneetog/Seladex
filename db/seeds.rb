@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 user = User.create(email: "admin@seladex.com",
-                name: "Admin",
+                first_name: "Admin",
 	            password: "password", 
 	            password_confirmation: "password",
 	            role: "admin"
