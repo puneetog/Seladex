@@ -1,9 +1,6 @@
 Seladex::Application.routes.draw do
 
-  get "stores/index"
-  get "stores/update"
-  get "stores/create"
-  get "stores/edit"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   # You can have the root of your site routed with "root"
@@ -14,12 +11,11 @@ Seladex::Application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
+  resources :organizations
   # Example resource route (maps HTTP verbs to controller actions automatically):
     namespace :admin do
       resources :videos
-      resources :users
-      resources :stores
+      resources :users      
     end
   # Example resource route with options:
   #   resources :products do

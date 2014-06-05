@@ -8,8 +8,8 @@ class Ability
       can :manage, :all
     else
       can :read, :all
-      cannot :read, Store 
-      can [:create, :update], Store
+      cannot :read, Organization 
+      can [:create, :update], Organization
       # can :create, Comment
       # can :update, Comment do |comment|
       #   comment.try(:user) == user || user.role?(:moderator)

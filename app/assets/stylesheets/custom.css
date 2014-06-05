@@ -166,7 +166,7 @@ footer {
 
 .select-user-form{
   border: 1px solid #ccc !important;
-  width: 30% !important; 
+  /*width: 30% !important; */
   font-size: 16px !important;
   color: #999 !important;
   padding: 5px !important;
@@ -209,4 +209,11 @@ footer {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.cust_form{  
+  overflow: hidden;
+}
+.clear{
+  clear: both;
 }

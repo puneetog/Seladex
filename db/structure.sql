@@ -76,6 +76,86 @@ ALTER SEQUENCE admin_videos_id_seq OWNED BY admin_videos.id;
 
 
 --
+-- Name: organization_managements; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE organization_managements (
+    id integer NOT NULL,
+    organization_admin_id integer,
+    organization_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    contact hstore,
+    invoice hstore,
+    orders hstore,
+    commission hstore,
+    user_rep hstore
+);
+
+
+--
+-- Name: organization_managements_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE organization_managements_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: organization_managements_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE organization_managements_id_seq OWNED BY organization_managements.id;
+
+
+--
+-- Name: organizations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE organizations (
+    id integer NOT NULL,
+    first_name character varying(255),
+    last_name character varying(255),
+    email character varying(255),
+    website character varying(255),
+    status boolean DEFAULT false,
+    mailing_address text,
+    billing_address text,
+    city character varying(255),
+    state character varying(255),
+    zip character varying(255),
+    country character varying(255),
+    phone character varying(255),
+    fax character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: organizations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE organizations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: organizations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE organizations_id_seq OWNED BY organizations.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -227,6 +307,20 @@ ALTER TABLE ONLY admin_videos ALTER COLUMN id SET DEFAULT nextval('admin_videos_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY organization_managements ALTER COLUMN id SET DEFAULT nextval('organization_managements_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY organizations ALTER COLUMN id SET DEFAULT nextval('organizations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY stores ALTER COLUMN id SET DEFAULT nextval('stores_id_seq'::regclass);
 
 
@@ -250,6 +344,22 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 ALTER TABLE ONLY admin_videos
     ADD CONSTRAINT admin_videos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: organization_managements_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY organization_managements
+    ADD CONSTRAINT organization_managements_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: organizations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY organizations
+    ADD CONSTRAINT organizations_pkey PRIMARY KEY (id);
 
 
 --
@@ -288,6 +398,41 @@ CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+
+
+--
+-- Name: organization_managements_commission; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX organization_managements_commission ON organization_managements USING gin (commission);
+
+
+--
+-- Name: organization_managements_contact; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX organization_managements_contact ON organization_managements USING gin (contact);
+
+
+--
+-- Name: organization_managements_invoice; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX organization_managements_invoice ON organization_managements USING gin (invoice);
+
+
+--
+-- Name: organization_managements_orders; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX organization_managements_orders ON organization_managements USING gin (orders);
+
+
+--
+-- Name: organization_managements_user_rep; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX organization_managements_user_rep ON organization_managements USING gin (user_rep);
 
 
 --
@@ -363,3 +508,11 @@ INSERT INTO schema_migrations (version) VALUES ('20140604063337');
 INSERT INTO schema_migrations (version) VALUES ('20140604063528');
 
 INSERT INTO schema_migrations (version) VALUES ('20140604072944');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605062227');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605062432');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605062643');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605063109');

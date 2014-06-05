@@ -27,7 +27,20 @@ Seladex::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  config.active_record.schema_format = :sql
+
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
 
   ADMIN_EMAIL="admin@seladex.com"
+
+  config.action_mailer.delivery_method = :smtp
+    ActionMailer::Base.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => 'vishuatongraph@gmail.com',
+    :password             => 'vishu123',
+    :authentication       => 'login',
+    :enable_starttls_auto => true  }
+
+    
 end

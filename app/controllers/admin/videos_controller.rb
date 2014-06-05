@@ -31,8 +31,6 @@ class Admin::VideosController < ApplicationController
 			  	Admin::Video.new
 			  end
 	end
-
-
 	
  
 private
