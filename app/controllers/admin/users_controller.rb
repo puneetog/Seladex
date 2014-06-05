@@ -3,20 +3,20 @@ class Admin::UsersController < ApplicationController
   before_filter :check_authorize_resource
 
   def index
-  	@users = Organization.all
+  	@users = User.all
   end
 
   def new
-  	@user = Organization.new
+  	@user = User.new
     @user.build_associations
   end
 
   def edit
-  	@user = Organization.find(params[:id])  	
+  	@user = User.find(params[:id])  	
   end
 
   def update
-  	@user = Organization.find(params[:id])
+  	@user = User.find(params[:id])
   	if @user.update_attributes(user_params)
 	  	flash[:message] = "User Successfully updated."
 	    redirect_to admin_users_path
@@ -26,18 +26,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-  	  @user = Organization.new(user_params)
-      logger.debug ":::::::::::::::::::::::::"
-      logger.debug params[:user]
-      # param = params["user"]["user_store_managements_attributes"] 
-      # @user.save_store_permisions(param)
-      
+  	  @user = User.new(user_params)
   	if @user.save
   	  flash[:message] = "User Successfully created."
       redirect_to admin_users_path
   	else
-      logger.debug("erors")
-      logger.debug(@user.errors.full_messages)
   	  render 'new'
   	end
   end

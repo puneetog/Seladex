@@ -5,7 +5,7 @@ class OrganizationManagement < ActiveRecord::Base
 	store_accessor :contact
 	store_accessor :commission
 
-	belongs_to :organization_admin
+	belongs_to :organization_user
 	belongs_to :organization
 end
 

@@ -5,9 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable#, :confirmable
 
   # validates :name, presence: true
+  ROLES = [:admin, :organization_admin, :organization_user]
+
   DEFAULT_NUM_OrganizationMANAGEMENTS = 1
 
-  ROLES = [:admin, :organization_admin, :user]
   has_many :organization_managements
   has_many :stores, through: :organization_managements
 
@@ -17,7 +18,7 @@ class User < ActiveRecord::Base
     DEFAULT_NUM_OrganizationMANAGEMENTS.times { organization_managements.build } if self.organization_managements.empty?
     self
   end
-  
+
   ROLES.each do |role|
     define_method "#{role}?" do
       self.role.try(:downcase).to_sym == role

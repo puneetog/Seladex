@@ -76,12 +76,50 @@ ALTER SEQUENCE admin_videos_id_seq OWNED BY admin_videos.id;
 
 
 --
+-- Name: organization_addresses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE organization_addresses (
+    id integer NOT NULL,
+    address character varying(255),
+    city character varying(255),
+    state character varying(255),
+    zip character varying(255),
+    country character varying(255),
+    phone character varying(255),
+    fax character varying(255),
+    type character varying(255),
+    organization_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: organization_addresses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE organization_addresses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: organization_addresses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE organization_addresses_id_seq OWNED BY organization_addresses.id;
+
+
+--
 -- Name: organization_managements; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE organization_managements (
     id integer NOT NULL,
-    organization_admin_id integer,
     organization_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
@@ -89,7 +127,8 @@ CREATE TABLE organization_managements (
     invoice hstore,
     orders hstore,
     commission hstore,
-    user_rep hstore
+    user_rep hstore,
+    organization_user_id integer
 );
 
 
@@ -113,6 +152,36 @@ ALTER SEQUENCE organization_managements_id_seq OWNED BY organization_managements
 
 
 --
+-- Name: organization_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE organization_users (
+    id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: organization_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE organization_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: organization_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE organization_users_id_seq OWNED BY organization_users.id;
+
+
+--
 -- Name: organizations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -123,16 +192,9 @@ CREATE TABLE organizations (
     email character varying(255),
     website character varying(255),
     status boolean DEFAULT false,
-    mailing_address text,
-    billing_address text,
-    city character varying(255),
-    state character varying(255),
-    zip character varying(255),
-    country character varying(255),
-    phone character varying(255),
-    fax character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    organization_admin_id integer
 );
 
 
@@ -165,87 +227,6 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: stores; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE stores (
-    id integer NOT NULL,
-    name character varying(255),
-    email character varying(255),
-    user_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    manufacturer character varying(255),
-    contact character varying(255),
-    address text,
-    city character varying(255),
-    state character varying(255),
-    zip character varying(255),
-    country character varying(255),
-    phone character varying(255),
-    fax character varying(255),
-    website character varying(255),
-    status boolean DEFAULT false
-);
-
-
---
--- Name: stores_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE stores_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: stores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE stores_id_seq OWNED BY stores.id;
-
-
---
--- Name: user_store_managements; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE user_store_managements (
-    id integer NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    contact hstore,
-    invoice hstore,
-    orders hstore,
-    commission hstore,
-    user_rep hstore,
-    store_id integer,
-    user_id integer
-);
-
-
---
--- Name: user_store_managements_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE user_store_managements_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: user_store_managements_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE user_store_managements_id_seq OWNED BY user_store_managements.id;
-
-
---
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -263,17 +244,17 @@ CREATE TABLE users (
     last_sign_in_ip character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    role character varying(255) DEFAULT 'user'::character varying,
-    name character varying(255),
+    first_name character varying(255),
     last_name character varying(255),
     initial character varying(255),
     address character varying(255),
     city character varying(255),
     state character varying(255),
-    zip integer,
+    zip character varying(255),
     country character varying(255),
-    cell_phone integer,
-    home_phone integer
+    cell_phone character varying(255),
+    home_phone character varying(255),
+    role character varying(255) DEFAULT 'user'::character varying
 );
 
 
@@ -307,6 +288,13 @@ ALTER TABLE ONLY admin_videos ALTER COLUMN id SET DEFAULT nextval('admin_videos_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY organization_addresses ALTER COLUMN id SET DEFAULT nextval('organization_addresses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY organization_managements ALTER COLUMN id SET DEFAULT nextval('organization_managements_id_seq'::regclass);
 
 
@@ -314,21 +302,14 @@ ALTER TABLE ONLY organization_managements ALTER COLUMN id SET DEFAULT nextval('o
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY organization_users ALTER COLUMN id SET DEFAULT nextval('organization_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY organizations ALTER COLUMN id SET DEFAULT nextval('organizations_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY stores ALTER COLUMN id SET DEFAULT nextval('stores_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY user_store_managements ALTER COLUMN id SET DEFAULT nextval('user_store_managements_id_seq'::regclass);
 
 
 --
@@ -347,6 +328,14 @@ ALTER TABLE ONLY admin_videos
 
 
 --
+-- Name: organization_addresses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY organization_addresses
+    ADD CONSTRAINT organization_addresses_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: organization_managements_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -355,27 +344,19 @@ ALTER TABLE ONLY organization_managements
 
 
 --
+-- Name: organization_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY organization_users
+    ADD CONSTRAINT organization_users_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: organizations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY organizations
     ADD CONSTRAINT organizations_pkey PRIMARY KEY (id);
-
-
---
--- Name: stores_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY stores
-    ADD CONSTRAINT stores_pkey PRIMARY KEY (id);
-
-
---
--- Name: user_store_managements_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY user_store_managements
-    ADD CONSTRAINT user_store_managements_pkey PRIMARY KEY (id);
 
 
 --
@@ -443,41 +424,6 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 
 --
--- Name: user_store_managements_commission; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX user_store_managements_commission ON user_store_managements USING gin (commission);
-
-
---
--- Name: user_store_managements_contact; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX user_store_managements_contact ON user_store_managements USING gin (contact);
-
-
---
--- Name: user_store_managements_invoice; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX user_store_managements_invoice ON user_store_managements USING gin (invoice);
-
-
---
--- Name: user_store_managements_orders; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX user_store_managements_orders ON user_store_managements USING gin (orders);
-
-
---
--- Name: user_store_managements_user_rep; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX user_store_managements_user_rep ON user_store_managements USING gin (user_rep);
-
-
---
 -- PostgreSQL database dump complete
 --
 
@@ -485,29 +431,11 @@ SET search_path TO "$user",public;
 
 INSERT INTO schema_migrations (version) VALUES ('20140528134931');
 
-INSERT INTO schema_migrations (version) VALUES ('20140530074736');
-
 INSERT INTO schema_migrations (version) VALUES ('20140530075151');
-
-INSERT INTO schema_migrations (version) VALUES ('20140530092544');
-
-INSERT INTO schema_migrations (version) VALUES ('20140531115140');
-
-INSERT INTO schema_migrations (version) VALUES ('20140602130427');
-
-INSERT INTO schema_migrations (version) VALUES ('20140603073624');
 
 INSERT INTO schema_migrations (version) VALUES ('20140603151728');
 
-INSERT INTO schema_migrations (version) VALUES ('20140604062322');
-
 INSERT INTO schema_migrations (version) VALUES ('20140604063230');
-
-INSERT INTO schema_migrations (version) VALUES ('20140604063337');
-
-INSERT INTO schema_migrations (version) VALUES ('20140604063528');
-
-INSERT INTO schema_migrations (version) VALUES ('20140604072944');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605062227');
 
@@ -516,3 +444,13 @@ INSERT INTO schema_migrations (version) VALUES ('20140605062432');
 INSERT INTO schema_migrations (version) VALUES ('20140605062643');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605063109');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605093903');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605094053');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605100212');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605100431');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605101232');
