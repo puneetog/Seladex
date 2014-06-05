@@ -21,7 +21,9 @@
 		                                        <td><%= store.created_at.strftime("%Y/%m/%d") %></td>
 		                                        <td><%= store.name.try(:humanize) %></td>               
 		                                        <td><%= store.store_status %></td>               
-		                                        <td><%= link_to "Edit", edit_admin_store_path(store) %></td>                              
+		                                        <td>
+		                                        	<%= link_to "Edit", edit_admin_store_path(store) %> | <%= link_to "Create User", new_admin_user_path() %>
+		                                        </td>                              
 		                                    </tr>
 	                                    <% end %>
 	                                    

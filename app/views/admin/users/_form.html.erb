@@ -140,12 +140,17 @@
 	</div>
 </div>
 <div>
-		<small>Role</small>
+	<small>Role</small>
     <div>
     	 <%= f.select :role, User::ROLES.map{|role| role.to_s.humanize}, {prompt: "Select a Role"}, {class: "form-control select-user-form"}%>
 
 	</div>
 </div>
+
+<%=f.simple_fields_for :user_store_managements do |f_num|%>
+	<%=render "user_store_management_fields", :f_num => f_num%>
+<%end%>
+
 <div class="form-group">
 	<%= f.submit "Save", class: "btn btn-default btn-lg"%>
 </div>

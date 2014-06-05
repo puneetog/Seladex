@@ -11,7 +11,7 @@ end
 
 def down
   execute "DROP INDEX user_store_managements_contact"
-  execute "DROP INDEX user_store_managements_order"
+  execute "DROP INDEX user_store_managements_orders"
   execute "DROP INDEX user_store_managements_invoice"
   execute "DROP INDEX user_store_managements_commission"
   execute "DROP INDEX user_store_managements_user_rep"

@@ -8,10 +8,11 @@ class Admin::UsersController < ApplicationController
 
   def new
   	@user = User.new
+    @user.build_associations
   end
 
   def edit
-  	@user = User.find(params[:id])  	 
+  	@user = User.find(params[:id])  	
   end
 
   def update
@@ -25,13 +26,20 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-  	 @user = User.new(user_params)
+  	  @user = User.new(user_params)
+      logger.debug ":::::::::::::::::::::::::"
+      logger.debug params[:user]
+      # param = params["user"]["user_store_managements_attributes"] 
+      # @user.save_store_permisions(param)
+      
   	if @user.save
   	  flash[:message] = "User Successfully created."
       redirect_to admin_users_path
-	else
-	  render 'new'
-	end
+  	else
+      logger.debug("erors")
+      logger.debug(@user.errors.full_messages)
+  	  render 'new'
+  	end
   end
 
   def destroy
@@ -39,8 +47,8 @@ class Admin::UsersController < ApplicationController
   
   private
   def user_params
-  	# binding.pry  	 
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role)
+    params.require(:user).permit!
+    # (:name, :email, :password, :password_confirmation, :role, :last_name, :initial, :address, :city, :state, :country, :zip, :cell_phone, :home_phone, user_store_managements_attributes: [:id, :contact, :order, :invoice, :commission, :user_rep])
   end
 
   def check_authorize_resource
