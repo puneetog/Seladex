@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   # validates :name, presence: true
 
-  ROLES = [:admin, :organization_admin, :user]
+  ROLES = [:admin, :organization_admin, :organization_user]
 
 
 

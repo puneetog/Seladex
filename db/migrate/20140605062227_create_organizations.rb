@@ -5,6 +5,7 @@ class CreateOrganizations < ActiveRecord::Migration
       t.string :last_name
       t.string :email
       t.string :website
+      t.boolean :status, default: false
       t.text :mailing_address
       t.text :billing_address
       t.string :city
@@ -13,7 +14,6 @@ class CreateOrganizations < ActiveRecord::Migration
       t.string :country
       t.string :phone
       t.string :fax
-      t.boolean :status, default: false
 
       t.timestamps
     end

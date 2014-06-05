@@ -76,12 +76,50 @@ ALTER SEQUENCE admin_videos_id_seq OWNED BY admin_videos.id;
 
 
 --
+-- Name: organization_addresses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE organization_addresses (
+    id integer NOT NULL,
+    address character varying(255),
+    city character varying(255),
+    state character varying(255),
+    zip character varying(255),
+    country character varying(255),
+    phone character varying(255),
+    fax character varying(255),
+    type character varying(255),
+    organization_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: organization_addresses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE organization_addresses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: organization_addresses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE organization_addresses_id_seq OWNED BY organization_addresses.id;
+
+
+--
 -- Name: organization_managements; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE organization_managements (
     id integer NOT NULL,
-    organization_admin_id integer,
     organization_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
@@ -89,7 +127,8 @@ CREATE TABLE organization_managements (
     invoice hstore,
     orders hstore,
     commission hstore,
-    user_rep hstore
+    user_rep hstore,
+    organization_user_id integer
 );
 
 
@@ -113,6 +152,36 @@ ALTER SEQUENCE organization_managements_id_seq OWNED BY organization_managements
 
 
 --
+-- Name: organization_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE organization_users (
+    id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: organization_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE organization_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: organization_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE organization_users_id_seq OWNED BY organization_users.id;
+
+
+--
 -- Name: organizations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -122,17 +191,10 @@ CREATE TABLE organizations (
     last_name character varying(255),
     email character varying(255),
     website character varying(255),
-    mailing_address text,
-    billing_address text,
-    city character varying(255),
-    state character varying(255),
-    zip character varying(255),
-    country character varying(255),
-    phone character varying(255),
-    fax character varying(255),
     status boolean DEFAULT false,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    organization_admin_id integer
 );
 
 
@@ -226,7 +288,21 @@ ALTER TABLE ONLY admin_videos ALTER COLUMN id SET DEFAULT nextval('admin_videos_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY organization_addresses ALTER COLUMN id SET DEFAULT nextval('organization_addresses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY organization_managements ALTER COLUMN id SET DEFAULT nextval('organization_managements_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY organization_users ALTER COLUMN id SET DEFAULT nextval('organization_users_id_seq'::regclass);
 
 
 --
@@ -252,11 +328,27 @@ ALTER TABLE ONLY admin_videos
 
 
 --
+-- Name: organization_addresses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY organization_addresses
+    ADD CONSTRAINT organization_addresses_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: organization_managements_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY organization_managements
     ADD CONSTRAINT organization_managements_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: organization_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY organization_users
+    ADD CONSTRAINT organization_users_pkey PRIMARY KEY (id);
 
 
 --
@@ -352,3 +444,13 @@ INSERT INTO schema_migrations (version) VALUES ('20140605062432');
 INSERT INTO schema_migrations (version) VALUES ('20140605062643');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605063109');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605093903');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605094053');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605100212');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605100431');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605101232');
