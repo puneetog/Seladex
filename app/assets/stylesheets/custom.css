@@ -217,3 +217,9 @@ footer {
 .clear{
   clear: both;
 }
+.address_form{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5%;
+  margin-bottom: 5%;
+}

@@ -11,6 +11,8 @@ class OrganizationsController < ApplicationController
   def new
   	@organization = Organization.new
     @organization.build_associations
+    @organization.organization_admin = OrganizationAdmin.new
+    2.times { @organization.organization_addresses.build }
   end
 
   def edit
@@ -27,15 +29,8 @@ class OrganizationsController < ApplicationController
 	  end
   end
 
-  def create
-    password_string = get_random_string
-    params[:organization][:user_password] = password_string
-  	@organization = Organization.new(organization_params)
-    user = OrganizationUser.new(email: organization_params[:email], name: organization_params[:name], password: password_string, 
-                    password_confirmation: password_string, address: organization_params[:address], city: organization_params[:city],
-                    state: organization_params[:state], zip: organization_params[:zip], country: organization_params[:country], 
-                    cell_phone: organization_params[:phone], role: "organization_admin")
-    @organization.users << user   
+  def create 
+  	@organization = Organization.new(organization_params)     
   	if @organization.save
   	  flash[:message] = "Organization Successfully created."
       redirect_to (user_signed_in? and current_user.admin?) ? organizations_path : root_path    
@@ -48,17 +43,10 @@ class OrganizationsController < ApplicationController
   private
   
   def organization_params
-  	# binding.pry
+    # params[:organization][:first_name] = params[:organization][:organization_admin_attributes][:first_name]
+    # params[:organization][:last_name] = params[:organization][:organization_admin_attributes][:last_name]
+    # params[:organization][:email] = params[:organization][:organization_admin_attributes][:email]
     params.require(:organization).permit!
-    # if user_signed_in? and current_user.admin? 
-    #   params.require(:organization).permit(:name, :email, :manufacturer, :contact, 
-    #                               :address, :city, :state, :zip, :country, 
-    #                               :phone, :fax, :website, :status, :user_password)
-    # else
-    #   params.require(:organization).permit(:name, :email, :manufacturer, :contact, 
-    #                               :address, :city, :state, :zip, :country, 
-    #                               :phone, :fax, :website, :user_password)
-    # end
   end
 
   def check_authorize_resource

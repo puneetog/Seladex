@@ -52,11 +52,11 @@ Seladex::Application.routes.draw do
   #   resources :photos, concerns: :toggleable
 
   # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+    namespace :organization do
+      # Directs /admin/products/* to Admin::ProductsController
+      # (app/controllers/admin/products_controller.rb)
+      resources :users
+    end
   devise_for :users 
     as :user do
     get '/users/sign_out' => 'devise/sessions#destroy'

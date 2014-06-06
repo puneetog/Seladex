@@ -88,7 +88,7 @@ CREATE TABLE organization_addresses (
     country character varying(255),
     phone character varying(255),
     fax character varying(255),
-    type character varying(255),
+    address_type character varying(255),
     organization_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
@@ -149,36 +149,6 @@ CREATE SEQUENCE organization_managements_id_seq
 --
 
 ALTER SEQUENCE organization_managements_id_seq OWNED BY organization_managements.id;
-
-
---
--- Name: organization_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE organization_users (
-    id integer NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: organization_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE organization_users_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: organization_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE organization_users_id_seq OWNED BY organization_users.id;
 
 
 --
@@ -302,13 +272,6 @@ ALTER TABLE ONLY organization_managements ALTER COLUMN id SET DEFAULT nextval('o
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY organization_users ALTER COLUMN id SET DEFAULT nextval('organization_users_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY organizations ALTER COLUMN id SET DEFAULT nextval('organizations_id_seq'::regclass);
 
 
@@ -341,14 +304,6 @@ ALTER TABLE ONLY organization_addresses
 
 ALTER TABLE ONLY organization_managements
     ADD CONSTRAINT organization_managements_pkey PRIMARY KEY (id);
-
-
---
--- Name: organization_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY organization_users
-    ADD CONSTRAINT organization_users_pkey PRIMARY KEY (id);
 
 
 --
@@ -447,10 +402,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140605063109');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605093903');
 
-INSERT INTO schema_migrations (version) VALUES ('20140605094053');
-
-INSERT INTO schema_migrations (version) VALUES ('20140605100212');
-
 INSERT INTO schema_migrations (version) VALUES ('20140605100431');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605101232');
+
+INSERT INTO schema_migrations (version) VALUES ('20140605120646');

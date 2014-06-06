@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contact: 
+  order: 
+  invoice: 
+  commission: 
+  user_reps: MyString
+
+two:
+  contact: 
+  order: 
+  invoice: 
+  commission: 
+  user_reps: MyString
