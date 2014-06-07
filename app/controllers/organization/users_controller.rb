@@ -1,5 +1,5 @@
 class Organization::UsersController < ApplicationController
-    # before_filter :check_authorize_resource
+    before_filter :check_authorize_resource
 
   def index
     @org_users = OrganizationUser.all

@@ -3,6 +3,7 @@ class Organization < ActiveRecord::Base
 	# validates :email, presence: true, uniqueness: true
 
     has_many :organization_managements
+    has_many :brands
     has_many :organization_addresses, dependent: :destroy
 	has_many :organization_users, through: :organization_managements
     belongs_to :organization_admin

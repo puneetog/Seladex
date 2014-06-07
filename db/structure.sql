@@ -76,6 +76,41 @@ ALTER SEQUENCE admin_videos_id_seq OWNED BY admin_videos.id;
 
 
 --
+-- Name: brands; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE brands (
+    id integer NOT NULL,
+    name character varying(255),
+    description character varying(255),
+    commission_rate double precision,
+    territory character varying(255),
+    organization_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: brands_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE brands_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: brands_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE brands_id_seq OWNED BY brands.id;
+
+
+--
 -- Name: organization_addresses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -149,6 +184,38 @@ CREATE SEQUENCE organization_managements_id_seq
 --
 
 ALTER SEQUENCE organization_managements_id_seq OWNED BY organization_managements.id;
+
+
+--
+-- Name: organization_user_brands; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE organization_user_brands (
+    id integer NOT NULL,
+    brand_id integer,
+    organization_user_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: organization_user_brands_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE organization_user_brands_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: organization_user_brands_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE organization_user_brands_id_seq OWNED BY organization_user_brands.id;
 
 
 --
@@ -258,6 +325,13 @@ ALTER TABLE ONLY admin_videos ALTER COLUMN id SET DEFAULT nextval('admin_videos_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY brands ALTER COLUMN id SET DEFAULT nextval('brands_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY organization_addresses ALTER COLUMN id SET DEFAULT nextval('organization_addresses_id_seq'::regclass);
 
 
@@ -266,6 +340,13 @@ ALTER TABLE ONLY organization_addresses ALTER COLUMN id SET DEFAULT nextval('org
 --
 
 ALTER TABLE ONLY organization_managements ALTER COLUMN id SET DEFAULT nextval('organization_managements_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY organization_user_brands ALTER COLUMN id SET DEFAULT nextval('organization_user_brands_id_seq'::regclass);
 
 
 --
@@ -291,6 +372,14 @@ ALTER TABLE ONLY admin_videos
 
 
 --
+-- Name: brands_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY brands
+    ADD CONSTRAINT brands_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: organization_addresses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -304,6 +393,14 @@ ALTER TABLE ONLY organization_addresses
 
 ALTER TABLE ONLY organization_managements
     ADD CONSTRAINT organization_managements_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: organization_user_brands_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY organization_user_brands
+    ADD CONSTRAINT organization_user_brands_pkey PRIMARY KEY (id);
 
 
 --
@@ -402,8 +499,14 @@ INSERT INTO schema_migrations (version) VALUES ('20140605063109');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605093903');
 
+INSERT INTO schema_migrations (version) VALUES ('20140605094053');
+
 INSERT INTO schema_migrations (version) VALUES ('20140605100431');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605101232');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605120646');
+
+INSERT INTO schema_migrations (version) VALUES ('20140607094220');
+
+INSERT INTO schema_migrations (version) VALUES ('20140607112610');
