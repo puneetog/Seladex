@@ -10,7 +10,6 @@ class OrganizationsController < ApplicationController
 
   def new
   	@organization = Organization.new
-    @organization.build_associations
     @organization.organization_admin = OrganizationAdmin.new
     2.times { @organization.organization_addresses.build }
   end
@@ -39,14 +38,25 @@ class OrganizationsController < ApplicationController
   	end
   end
 
+  def show
+    @organization = Organization.find(params[:id])
+  end
+
   
   private
   
   def organization_params
-    # params[:organization][:first_name] = params[:organization][:organization_admin_attributes][:first_name]
-    # params[:organization][:last_name] = params[:organization][:organization_admin_attributes][:last_name]
-    # params[:organization][:email] = params[:organization][:organization_admin_attributes][:email]
+    params[:organization][:first_name] = params[:organization][:organization_admin_attributes][:first_name]
+    params[:organization][:last_name] = params[:organization][:organization_admin_attributes][:last_name]
+    params[:organization][:email] = params[:organization][:organization_admin_attributes][:email]
     params.require(:organization).permit!
+  	# # binding.pry
+    # params.require(:organization).permit!
+    # if user_signed_in? and current_user.admin? 
+    #   params.require(:organization).permit(:website, :organization_admin_attributes, :organization_addresses_attributes, :status)
+    # else
+      # params.require(:organization).permit(:website, :organization_admin_attributes[:first_name. :last_name, :email, :password, :password_confirmation], :organization_addresses_attributes)
+    # end
   end
 
   def check_authorize_resource

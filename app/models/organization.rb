@@ -36,4 +36,12 @@ class Organization < ActiveRecord::Base
     def name
       "#{first_name} #{last_name}"
     end
+
+    def mailing_address
+        organization_addresses.where(address_type: "Mailing")[0]
+    end
+
+     def billing_address
+        organization_addresses.where(address_type: "Billing")[0]
+    end
 end

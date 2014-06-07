@@ -1,5 +1,5 @@
-class Organization::UsersController < ApplicationController
-  before_filter :check_authorize_resource
+class OrganizationUsersController < ApplicationController
+	# before_filter :check_authorize_resource
 
   def index
   	@org_users = OrganizationUser.all
@@ -25,15 +25,15 @@ class Organization::UsersController < ApplicationController
   end
 
   def create
-    #usr = OrganizationUser.get_org_user(params[:organization_user])
+    usr = OrganizationUser.get_org_user(params[:organization_user])
     #logger.debug(usr)
-    #usr_mang = OrganizationUser.get_org_user_per(params[:organization_user])
-  	@org_user = OrganizationUser.new(organization_user_params)
+    usr_mang = OrganizationUser.get_org_user_per(params[:organization_user])
+  	@org_user = OrganizationUser.new(usr)
     if @org_user.valid?
-      #@org_user.organization_managements.new(usr_mang)
+      @org_user.organization_managements.new(usr_mang)
       if @org_user.save
         flash[:message] = "User Successfully created."
-        redirect_to organization_users_path
+        redirect_to organization_path(@organization) 
       else        
         render 'new'
       end

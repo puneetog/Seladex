@@ -223,3 +223,11 @@ footer {
   padding: 5%;
   margin-bottom: 5%;
 }
+.cust_show_form h4{
+  display: inline;
+  color: #999;
+}
+.cust_show_form span h4{
+  display: inline;
+  color: 'gray';
+}
