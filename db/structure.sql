@@ -128,7 +128,8 @@ CREATE TABLE organization_managements (
     orders hstore,
     commission hstore,
     user_rep hstore,
-    organization_user_id integer
+    organization_user_id integer,
+    role_id integer
 );
 
 
@@ -185,6 +186,44 @@ CREATE SEQUENCE organizations_id_seq
 --
 
 ALTER SEQUENCE organizations_id_seq OWNED BY organizations.id;
+
+
+--
+-- Name: roles; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE roles (
+    id integer NOT NULL,
+    name character varying(255),
+    organization_id integer,
+    user_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    contact hstore,
+    orders hstore,
+    commission hstore,
+    invoice hstore,
+    user_rep hstore
+);
+
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE roles_id_seq OWNED BY roles.id;
 
 
 --
@@ -279,6 +318,13 @@ ALTER TABLE ONLY organizations ALTER COLUMN id SET DEFAULT nextval('organization
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -312,6 +358,14 @@ ALTER TABLE ONLY organization_managements
 
 ALTER TABLE ONLY organizations
     ADD CONSTRAINT organizations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
 
 
 --
@@ -372,6 +426,41 @@ CREATE INDEX organization_managements_user_rep ON organization_managements USING
 
 
 --
+-- Name: roles_commission; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX roles_commission ON roles USING gin (commission);
+
+
+--
+-- Name: roles_contact; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX roles_contact ON roles USING gin (contact);
+
+
+--
+-- Name: roles_invoice; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX roles_invoice ON roles USING gin (invoice);
+
+
+--
+-- Name: roles_orders; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX roles_orders ON roles USING gin (orders);
+
+
+--
+-- Name: roles_user_rep; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX roles_user_rep ON roles USING gin (user_rep);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -407,3 +496,11 @@ INSERT INTO schema_migrations (version) VALUES ('20140605100431');
 INSERT INTO schema_migrations (version) VALUES ('20140605101232');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605120646');
+
+INSERT INTO schema_migrations (version) VALUES ('20140607080507');
+
+INSERT INTO schema_migrations (version) VALUES ('20140607081800');
+
+INSERT INTO schema_migrations (version) VALUES ('20140607123601');
+
+INSERT INTO schema_migrations (version) VALUES ('20140607123714');

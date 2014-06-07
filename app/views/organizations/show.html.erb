@@ -1,102 +1,131 @@
-            <div class="well cust_form">
-                  <div >
-                  <div class="form-group cust_show_form pull-left col-md-4">
-                  	<h3>Mailing Address</h3>
-                    <p class="text-muted ">
-                      <h4>Website</h4> :    <h4><span><%=@organization.website%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>Name</h4> :    <h4><span><%=@organization.name%></span></h4>
-                    </p>                  
-                    <p class="text-muted ">
-                      <h4>Email</h4> :   <h4><span><%=@organization.email%></span></h4>
-                    </p>
-                    
-                  </div>
+      <div class="well cust_form">
+            <div >
+            <div class="form-group cust_show_form pull-left col-md-4">
+            	<h3>Mailing Address</h3>
+              <p class="text-muted ">
+                <h4>Website</h4> :    <h4><span><%=@organization.website%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>Name</h4> :    <h4><span><%=@organization.name%></span></h4>
+              </p>                  
+              <p class="text-muted ">
+                <h4>Email</h4> :   <h4><span><%=@organization.email%></span></h4>
+              </p>
+              
+            </div>
 
-                  <div class="form-group cust_show_form pull-left col-md-3">
-                  	<h3>Mailing Address</h3>
-                  	<% mailing_address = @organization.mailing_address %>
-                  	<p class="text-muted ">
-                      <h4>Address</h4> :    <h4><span><%=mailing_address.address%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>City</h4> :    <h4><span><%=mailing_address.city%></span></h4>
-                    </p>                  
-                    <p class="text-muted ">
-                      <h4>State</h4> :   <h4><span><%=mailing_address.state%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>Country</h4> :   <h4><span><%=mailing_address.country%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>Phone</h4> :   <h4><span><%=mailing_address.phone%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>Fax</h4> :   <h4><span><%=mailing_address.fax%></span></h4>
-                    </p>
-                  </div>
-                    <div class="form-group cust_show_form pull-left col-md-3">
-                     <h3>Billing Address</h3>
-                  	<% billing_address = @organization.billing_address %>
-                  	<p class="text-muted ">
-                      <h4>Address</h4> :    <h4><span><%=billing_address.address%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>City</h4> :    <h4><span><%=billing_address.city%></span></h4>
-                    </p>                  
-                    <p class="text-muted ">
-                      <h4>State</h4> :   <h4><span><%=billing_address.state%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>Country</h4> :   <h4><span><%=billing_address.country%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>Phone</h4> :   <h4><span><%=billing_address.phone%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>Fax</h4> :   <h4><span><%=billing_address.fax%></span></h4>
-                    </p>
-                  </div>
-               
-          </div>
-          <div class="pull-left" style="width: 20%">
- 	 	<%= link_to "Edit Organization", edit_organization_path(@organization), class: "dbtn big twitter-big no-image btn-block"  %>	</div>
-          </div>
+            <div class="form-group cust_show_form pull-left col-md-3">
+            	<h3>Mailing Address</h3>
+            	<% mailing_address = @organization.mailing_address %>
+            	<p class="text-muted ">
+                <h4>Address</h4> :    <h4><span><%=mailing_address.address%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>City</h4> :    <h4><span><%=mailing_address.city%></span></h4>
+              </p>                  
+              <p class="text-muted ">
+                <h4>State</h4> :   <h4><span><%=mailing_address.state%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>Country</h4> :   <h4><span><%=mailing_address.country%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>Phone</h4> :   <h4><span><%=mailing_address.phone%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>Fax</h4> :   <h4><span><%=mailing_address.fax%></span></h4>
+              </p>
+            </div>
+              <div class="form-group cust_show_form pull-left col-md-3">
+               <h3>Billing Address</h3>
+            	<% billing_address = @organization.billing_address %>
+            	<p class="text-muted ">
+                <h4>Address</h4> :    <h4><span><%=billing_address.address%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>City</h4> :    <h4><span><%=billing_address.city%></span></h4>
+              </p>                  
+              <p class="text-muted ">
+                <h4>State</h4> :   <h4><span><%=billing_address.state%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>Country</h4> :   <h4><span><%=billing_address.country%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>Phone</h4> :   <h4><span><%=billing_address.phone%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>Fax</h4> :   <h4><span><%=billing_address.fax%></span></h4>
+              </p>
+            </div>
+         
+    </div>
+    <div class="pull-left" style="width: 20%">
+ 	 	  <%= link_to "Edit Organization", edit_organization_path(@organization), class: "dbtn big twitter-big no-image btn-block"  %>	</div>
+    </div>
  	 
  	  <div class="well">
  	  	<div style="width: 20%">
  	 	<%= link_to "New Organization User", new_organization_organization_user_path(@organization), class: "dbtn big twitter-big no-image btn-block"  %>	</div>
- 	
-	                    	<div class="header">Organization Table </div>
-	                    	
-	                    	<div class="table-responsive">
-	                    		<table class="table table-hover">
-	                                <thead>
-	                                    <tr>
-	                                        <th>Email</th>
-	                                        <th>Date registered</th>
-	                                        <th>Name</th>
-	                                        
-	                                        <th></th>
-	                                    </tr>
-	                                </thead>
-	                                <tbody>
-	                                	<% @organization.organization_users.each do |user| %>
-		                                    <tr>
-		                                        <td><%= user.email %> </td>
-		                                        <td><%= user.created_at.strftime("%Y/%m/%d") %></td>
-		                                        <td><%= user.name.try(:humanize) %></td>                                                  
-		                                        <td>
-		                                        	<%= link_to "Show", organization_organization_user_path(@organization,user) %>
-		                                        </td>                              
-		                                    </tr>
-	                                    <% end %>
-	                                    
-	                                </tbody>
-	                            </table>
-	                    	</div>
-	                    	</div>
+  	<div class="header">Organization Table </div>
+  	
+  	<div class="table-responsive">
+  		<table class="table table-hover">
+              <thead>
+                  <tr>
+                      <th>Email</th>
+                      <th>Date registered</th>
+                      <th>Name</th>
+                      
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+              	<% @organization.organization_users.each do |user| %>
+                    <tr>
+                        <td><%= user.email %> </td>
+                        <td><%= user.created_at.strftime("%Y/%m/%d") %></td>
+                        <td><%= user.name.try(:humanize) %></td>                                                  
+                        <td>
+                        	<%= link_to "Show", organization_organization_user_path(@organization,user) %>
+                        </td>                              
+                    </tr>
+                  <% end %>
+                  
+              </tbody>
+          </table>
+  	</div>
+  	</div>
+
+    <div class="well">
+    <div style="width: 20%">
+    <%= link_to "Create New Role", new_organization_organization_role_path(@organization), class: "dbtn big twitter-big no-image btn-block"  %> </div>
+      <div class="header">Role Table </div>
+      
+      <div class="table-responsive">
+        <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date registered</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <% @organization.roles.each do |role| %>
+                      <tr>
+                          <td><%= role.name %> </td>
+                          <td><%= role.created_at.strftime("%Y/%m/%d") %></td>
+                          <td>
+                            <%= link_to "Edit", edit_organization_organization_role_path(@organization,role) %>
+                          </td>                              
+                      </tr>
+                    <% end %>
+                    
+                </tbody>
+            </table>
+      </div>
+      </div>
 
 
 	                

@@ -5,7 +5,9 @@ class Organization < ActiveRecord::Base
     has_many :organization_managements
     has_many :organization_addresses, dependent: :destroy
 	has_many :organization_users, through: :organization_managements
+    has_many :roles, dependent: :destroy
     belongs_to :organization_admin
+
 
     after_save :check_status
 	after_create :confirmation_mail
@@ -15,6 +17,14 @@ class Organization < ActiveRecord::Base
 
     accepts_nested_attributes_for :organization_admin, :reject_if => :all_blank
     accepts_nested_attributes_for :organization_addresses, :reject_if => :all_blank, :allow_destroy => true
+
+
+    accepts_nested_attributes_for :roles, allow_destroy: true, reject_if: :all_blank
+
+    def build_rol_associations
+      1.times { roles.build } if self.roles.empty?
+      self
+    end
 
 	attr_accessor :user_password
 

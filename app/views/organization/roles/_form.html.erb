@@ -1,0 +1,34 @@
+<%= form_for @role, url: @role.new_record? ? organization_organization_roles_path(@organization) : organization_organization_role_path(@organization, @role)  do |f| %>
+       <% if @role.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@role.errors.count, "error") %> prohibited
+        this User from being saved:
+      </h2>
+      <ul>
+        <% @role.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>        
+<div class="well cust_form">
+    <div class="pull-left col-md-5">
+    <div class="form-group">
+      <p class="text-muted">
+        <small>Name</small>
+      </p>
+      <div class="input-group" data-role="acknowledge-input">
+        <%= f.text_field :name, required: "required", placeholder: "Role Name", class: "form-control" %>
+        <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+      </div>
+      <div class="input-group" data-role="acknowledge-input">
+        <%= render "role_managements_fields", f: f%>
+      </div>
+    </div> 
+    <div class="form-group clear">
+      <%= f.submit "Save", class: "btn btn-default btn-lg"%>
+    </div>
+  </div>
+</div>
+<% end %>

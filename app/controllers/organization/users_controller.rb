@@ -8,7 +8,7 @@ class Organization::UsersController < ApplicationController
   def new
     @organization = Organization.find(params[:organization_id])
     @org_user = @organization.organization_users.new()
-    @org_user.build_associations
+    # @org_user.build_associations
   end
 
   def edit
@@ -26,23 +26,36 @@ class Organization::UsersController < ApplicationController
   end
 
   def create
-    usr = OrganizationUser.get_org_user(params[:organization_user])
-    #logger.debug(usr)
-    usr_mang = OrganizationUser.get_org_user_per(params[:organization_user])
+    # usr = OrganizationUser.get_org_user(params[:organization_user])
+    # usr_mang = OrganizationUser.get_org_user_per(params[:organization_user])
+    # logger.debug(usr_mang)
     @organization = Organization.find(params[:organization_id])
-    @org_user = @organization.organization_users.new(usr)
-    if @organization.valid?
-      @organization.organization_managements.new(usr_mang)
-      if @organization.save
+    @org_user = @organization.organization_users.new(organization_user_params)   
+    # @org_user.organization_managements.organization = @organization
+    #if @organization.valid?
+      #@organization.organization_managements.new(usr_mang)
+      if @org_user.save
+        org = @org_user.organization_managements.last
+        logger.debug("#{org.id}sdfsd#{@organization.id}")
+        org.organization_id = @organization.id
+        if !org.save
+          logger.debug("errors")
+          logger.debug(org.errors.full_messages)
+        end
         flash[:message] = "User Successfully created."
         redirect_to organization_path(@organization)
-      else        
-        render 'new'
-      end
+      # else        
+      #   render 'new'
+      # end
     else      
       render 'new'
     end
     
+  end
+
+  def show
+    @organization = Organization.find(params[:organization_id])
+    @org_user = OrganizationUser.find(params[:id])
   end
 
   def destroy
