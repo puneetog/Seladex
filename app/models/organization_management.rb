@@ -7,5 +7,12 @@ class OrganizationManagement < ActiveRecord::Base
 
 	belongs_to :organization_user
 	belongs_to :organization
+	belongs_to :role
+
+	accepts_nested_attributes_for :role, allow_destroy: true, reject_if: :all_blank
+
+	def build_role_associations
+		role.build 		
+	end
 end
 

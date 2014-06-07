@@ -1,72 +1,76 @@
-            <div class="well cust_form">
-                  <div >
-                  <div class="form-group cust_show_form pull-left col-md-4">
-                  	<h3>Mailing Address</h3>
-                    <p class="text-muted ">
-                      <h4>Website</h4> :    <h4><span><%=@organization.website%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>Name</h4> :    <h4><span><%=@organization.name%></span></h4>
-                    </p>                  
-                    <p class="text-muted ">
-                      <h4>Email</h4> :   <h4><span><%=@organization.email%></span></h4>
-                    </p>
-                    
-                  </div>
+      <div class="well cust_form">
+            <div >
+            <div class="form-group cust_show_form pull-left col-md-4">
+            	<h3>Mailing Address</h3>
+              <p class="text-muted ">
+                <h4>Website</h4> :    <h4><span><%=@organization.website%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>Name</h4> :    <h4><span><%=@organization.name%></span></h4>
+              </p>                  
+              <p class="text-muted ">
+                <h4>Email</h4> :   <h4><span><%=@organization.email%></span></h4>
+              </p>
+              
+            </div>
 
-                  <div class="form-group cust_show_form pull-left col-md-3">
-                  	<h3>Mailing Address</h3>
-                  	<% mailing_address = @organization.mailing_address %>
-                  	<p class="text-muted ">
-                      <h4>Address</h4> :    <h4><span><%=mailing_address.address%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>City</h4> :    <h4><span><%=mailing_address.city%></span></h4>
-                    </p>                  
-                    <p class="text-muted ">
-                      <h4>State</h4> :   <h4><span><%=mailing_address.state%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>Country</h4> :   <h4><span><%=mailing_address.country%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>Phone</h4> :   <h4><span><%=mailing_address.phone%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>Fax</h4> :   <h4><span><%=mailing_address.fax%></span></h4>
-                    </p>
-                  </div>
-                    <div class="form-group cust_show_form pull-left col-md-3">
-                     <h3>Billing Address</h3>
-                  	<% billing_address = @organization.billing_address %>
-                  	<p class="text-muted ">
-                      <h4>Address</h4> :    <h4><span><%=billing_address.address%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>City</h4> :    <h4><span><%=billing_address.city%></span></h4>
-                    </p>                  
-                    <p class="text-muted ">
-                      <h4>State</h4> :   <h4><span><%=billing_address.state%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>Country</h4> :   <h4><span><%=billing_address.country%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>Phone</h4> :   <h4><span><%=billing_address.phone%></span></h4>
-                    </p>
-                    <p class="text-muted ">
-                      <h4>Fax</h4> :   <h4><span><%=billing_address.fax%></span></h4>
-                    </p>
-                  </div>
-               
-          </div>
-          <div class="pull-left" style="width: 20%">
- 	 	<%= link_to "Edit Organization", edit_organization_path(@organization), class: "dbtn big twitter-big no-image btn-block"  %>	</div>
-          </div>
- 	 
+            <div class="form-group cust_show_form pull-left col-md-3">
+            	<h3>Mailing Address</h3>
+            	<% mailing_address = @organization.mailing_address %>
+            	<p class="text-muted ">
+                <h4>Address</h4> :    <h4><span><%=mailing_address.address%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>City</h4> :    <h4><span><%=mailing_address.city%></span></h4>
+              </p>                  
+              <p class="text-muted ">
+                <h4>State</h4> :   <h4><span><%=mailing_address.state%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>Country</h4> :   <h4><span><%=mailing_address.country%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>Phone</h4> :   <h4><span><%=mailing_address.phone%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>Fax</h4> :   <h4><span><%=mailing_address.fax%></span></h4>
+              </p>
+            </div>
+              <div class="form-group cust_show_form pull-left col-md-3">
+               <h3>Billing Address</h3>
+            	<% billing_address = @organization.billing_address %>
+            	<p class="text-muted ">
+                <h4>Address</h4> :    <h4><span><%=billing_address.address%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>City</h4> :    <h4><span><%=billing_address.city%></span></h4>
+              </p>                  
+              <p class="text-muted ">
+                <h4>State</h4> :   <h4><span><%=billing_address.state%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>Country</h4> :   <h4><span><%=billing_address.country%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>Phone</h4> :   <h4><span><%=billing_address.phone%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>Fax</h4> :   <h4><span><%=billing_address.fax%></span></h4>
+              </p>
+            </div>
+         
+    </div>
+    <div class="pull-left" style="width: 20%">
+ 	 	  <%= link_to "Edit Organization", edit_organization_path(@organization), class: "dbtn big twitter-big no-image btn-block"  %>	</div>
+    </div>
+
  	 
                       <%= render "user_table" %>
                       <%= render "brand_table" %>
+                      <%= render "role_table" %>
+
+
+
 
 
 

@@ -1,0 +1,30 @@
+
+    <div class="well">
+    <div style="width: 20%">
+    <%= link_to "Create New Role", new_organization_organization_role_path(@organization), class: "dbtn big twitter-big no-image btn-block"  %> </div>
+      <div class="header">Role Table </div>
+      
+      <div class="table-responsive">
+        <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date registered</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <% @organization.roles.each do |role| %>
+                      <tr>
+                          <td><%= role.name %> </td>
+                          <td><%= role.created_at.strftime("%Y/%m/%d") %></td>
+                          <td>
+                            <%= link_to "Edit", edit_organization_organization_role_path(@organization,role) %>
+                          </td>                              
+                      </tr>
+                    <% end %>
+                    
+                </tbody>
+            </table>
+      </div>
+      </div>
