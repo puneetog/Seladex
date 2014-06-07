@@ -12,7 +12,7 @@ Seladex::Application.routes.draw do
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
   resources :organizations
-  resources :organization_users
+  # resources :organization_users
   # Example resource route (maps HTTP verbs to controller actions automatically):
     namespace :admin do
       resources :videos
@@ -53,11 +53,15 @@ Seladex::Application.routes.draw do
   #   resources :photos, concerns: :toggleable
 
   # Example resource route within a namespace:
-    # namespace :organization do
-    #   # Directs /admin/products/* to Admin::ProductsController
-    #   # (app/controllers/admin/products_controller.rb)
-    #   resources :users
-    # end
+    namespace :organization do
+      # Directs /admin/products/* to Admin::ProductsController
+      # (app/controllers/admin/products_controller.rb)
+      resources :organizations do
+        resources :users
+        resources :brands
+        resources :roles
+      end
+    end
   devise_for :users 
     as :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
