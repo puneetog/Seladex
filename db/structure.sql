@@ -596,15 +596,14 @@ INSERT INTO schema_migrations (version) VALUES ('20140605101232');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605120646');
 
-INSERT INTO schema_migrations (version) VALUES ('20140607094220');
-
-INSERT INTO schema_migrations (version) VALUES ('20140607112610');
-
 INSERT INTO schema_migrations (version) VALUES ('20140607080507');
 
 INSERT INTO schema_migrations (version) VALUES ('20140607081800');
 
+INSERT INTO schema_migrations (version) VALUES ('20140607094220');
+
+INSERT INTO schema_migrations (version) VALUES ('20140607112610');
+
 INSERT INTO schema_migrations (version) VALUES ('20140607123601');
 
 INSERT INTO schema_migrations (version) VALUES ('20140607123714');
-

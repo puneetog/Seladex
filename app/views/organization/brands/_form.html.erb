@@ -1,5 +1,5 @@
 <div class="well cust_form col-md-5" style="margin-left: 28%">
-<%= form_for @brand, :url => @brand.new_record? ? organization_organization_brands_path(@organization) : organization_organization_brand_path(@brand.organization, @brand)  do |f| %>
+<%= form_for @brand, :url => @brand.new_record? ? organization_organization_brands_path(@organization) : organization_organization_brand_path(@organization, @brand)  do |f| %>
        <% if @brand.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -18,6 +18,7 @@
       <p class="text-muted">
         <small>Brand name</small>
       </p>
+      
       <div class="input-group" data-role="acknowledge-input">
         <%= f.text_field :name, required: "required", placeholder: "Name", class: "form-control" %>
           <span class="input-group-addon" data-role="acknowledgement"><i></i></span>

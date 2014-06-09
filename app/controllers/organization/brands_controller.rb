@@ -1,5 +1,6 @@
 class Organization::BrandsController < ApplicationController
-	before_filter :check_authorize_resource
+  before_filter :check_authorize_resource
+	before_filter :organization_brand
 
   def index
     @org_users = Brand.all
@@ -47,6 +48,7 @@ class Organization::BrandsController < ApplicationController
   end
   
   private
+  
   def brand_params
     # params.require(:organization_brand).permit!
     params.require(:brand).permit(:name, :description, :commission_rate, :territory)
@@ -58,4 +60,9 @@ class Organization::BrandsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def organization_brand
+    @organization = Organization.find(params[:organization_id]) if params[:organization_id].present?
+  end
+
 end

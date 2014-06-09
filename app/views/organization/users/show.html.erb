@@ -1,6 +1,6 @@
 <div class="well cust_form">
   <div >
-    <div class="form-group cust_show_form pull-left col-md-4">
+    <div class="form-group cust_show_form">
       <h3>User Information</h3>
       <p class="text-muted ">
       <h4>First Name</h4> : <h4><span><%=@org_user.first_name%></span></h4>
@@ -13,13 +13,16 @@
       </p>
 
       <p class="text-muted ">
-      <h4>Role</h4> :    <h4><span><%=@org_user.organization_managements.last.role.name%></span></h4>
+      <h4>Role</h4> :    <h4><span><%=@org_user.role_name%></span></h4>
       </p>
     </div>
   </div>
   <div class="pull-left" style="width: 20%">
-    <%= link_to "Organization User List", organization_path(@organization), class: "dbtn big twitter-big no-image btn-block"  %>	
+    <%= link_to "Edit Organization User", edit_organization_organization_user_path(@organization, @org_user), class: "dbtn big twitter-big no-image btn-block"  %>	
+     <%= link_to "Delete Organization User", organization_organization_user_path(@organization, @org_user), class: "dbtn big twitter-big no-image btn-block", method: :delete, confirm: "Are you sure?"  %> 
   </div>
 </div>
+
+<%= render "brand_table" %>
 
 	                

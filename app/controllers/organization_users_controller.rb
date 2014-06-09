@@ -1,5 +1,6 @@
 class OrganizationUsersController < ApplicationController
-	# before_filter :check_authorize_resource
+  before_filter :check_authorize_resource
+	
 
   def index
   	@org_users = OrganizationUser.all
@@ -43,8 +44,7 @@ class OrganizationUsersController < ApplicationController
   	
   end
 
-  def destroy
-  end
+ 
   
   private
   def organization_user_params
@@ -58,4 +58,6 @@ class OrganizationUsersController < ApplicationController
     	redirect_to root_path
     end
   end
+
+ 
 end
