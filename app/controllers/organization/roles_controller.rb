@@ -31,11 +31,6 @@ class Organization::RolesController < ApplicationController
     end
   end
 
-  def show
-    @organization = Organization.find(params[:organization_id])
-    @role = OrganizationUser.find(params[:id])
-  end
-
   def destroy
   end
   

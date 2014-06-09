@@ -43,4 +43,9 @@ class OrganizationUser < User
 	      end
 	    end
     end
+
+	def role
+		self.organization_managements.last.role
+	end
+
 end
