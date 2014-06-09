@@ -1,49 +1,51 @@
 <div class="form-group">
-	Store Permissions
+	<p class="text-muted">
+        <small>Role Permissions</small>
+      </p>
 	
-	<table border="1">
+	<table border="1" class="role_permission">
 		<tr>
-			<td></td>
-			<td>View</td>
-			<td>Edit</td>
-			<td>Create</td>
-			<td>Delete</td>
+			<th></th>
+			<th>Edit</td>
+			<th>Create</td>
+			<th>Delete</td>
+			<th>View</td>
 		</tr>
 		<tr>
 
 		<%= f.simple_fields_for :contact do |cont| %>
 			<td>Contact</td>
-			<td><%= cont.check_box :edit, :checked=>""%></td>
-			<td><%= cont.check_box :create%></td>
-			<td><%= cont.check_box :delete%></td>
-			<td><%= cont.check_box :view%></td>
+			<td><%= cont.check_box :edit, :checked=>@role.contact["edit"]=="0" ? "" : "checked"%></td>
+			<td><%= cont.check_box :create, :checked=>@role.contact["edit"]=="0" ? "" : "checked"%></td>
+			<td><%= cont.check_box :delete, :checked=>@role.contact["edit"]=="0" ? "" : "checked"%></td>
+			<td><%= cont.check_box :view, :checked=>@role.contact["view"]=="0" ? "" : "checked"%></td>
 		<% end %>
 		</tr>
 		<tr>
 		<%= f.simple_fields_for :orders do |ord| %>
 			<td>Order</td>
-			<td><%= ord.check_box :edit%></td>
-			<td><%= ord.check_box :create%></td>
-			<td><%= ord.check_box :delete%></td>
-			<td><%= ord.check_box :view%></td>
+			<td><%= ord.check_box :edit, :checked=>@role.contact["orders"]=="0" ? "" : "checked"%></td>
+			<td><%= ord.check_box :create, :checked=>@role.contact["orders"]=="0" ? "" : "checked"%></td>
+			<td><%= ord.check_box :delete, :checked=>@role.contact["orders"]=="0" ? "" : "checked"%></td>
+			<td><%= ord.check_box :view, :checked=>@role.contact["orders"]=="0" ? "" : "checked"%></td>
 		<% end %>
 		</tr>
 		<tr>
 		<%= f.simple_fields_for :invoice do |inv| %>
 			<td>Invoice</td>
-			<td><%= inv.check_box :edit%></td>
-			<td><%= inv.check_box :create%></td>
-			<td><%= inv.check_box :delete%></td>
-			<td><%= inv.check_box :view%></td>
+			<td><%= inv.check_box :edit, :checked=>@role.contact["invoice"]=="0" ? "" : "checked"%></td>
+			<td><%= inv.check_box :create, :checked=>@role.contact["invoice"]=="0" ? "" : "checked"%></td>
+			<td><%= inv.check_box :delete, :checked=>@role.contact["invoice"]=="0" ? "" : "checked"%></td>
+			<td><%= inv.check_box :view, :checked=>@role.contact["invoice"]=="0" ? "" : "checked"%></td>
 		<% end %>
 		</tr>
 		<tr>
 		<%= f.simple_fields_for :commission do |com| %>
 			<td>Commission</td>
-			<td><%= com.check_box :edit%></td>
-			<td><%= com.check_box :create%></td>
-			<td><%= com.check_box :delete%></td>
-			<td><%= com.check_box :view%></td>
+			<td><%= com.check_box :edit, :checked=>@role.contact["invoice"]=="0" ? "" : "checked"%></td>
+			<td><%= com.check_box :create, :checked=>@role.contact["invoice"]=="0" ? "" : "checked"%></td>
+			<td><%= com.check_box :delete, :checked=>@role.contact["invoice"]=="0" ? "" : "checked"%></td>
+			<td><%= com.check_box :view, :checked=>@role.contact["invoice"]=="0" ? "" : "checked"%></td>
 		<% end %>
 		</tr>
 		<tr>

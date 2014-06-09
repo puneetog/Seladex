@@ -36,7 +36,6 @@ class Organization::UsersController < ApplicationController
       #@organization.organization_managements.new(usr_mang)
       if @org_user.save
         org = @org_user.organization_managements.last
-        logger.debug("#{org.id}sdfsd#{@organization.id}")
         org.organization_id = @organization.id
         if !org.save
           logger.debug("errors")
@@ -56,6 +55,8 @@ class Organization::UsersController < ApplicationController
   def show
     @organization = Organization.find(params[:organization_id])
     @org_user = OrganizationUser.find(params[:id])
+    @role = @org_user.role
+    @role_fields = ["edit", "create", "delete", "view"]
   end
 
   def destroy

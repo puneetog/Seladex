@@ -3122,3 +3122,11 @@ body.modal-open,
 /* News Styles */
 .news .sidebar,
 .news .content { padding: 0 35px; } }
+
+.role_permission td {
+	padding: 5px 27px 6px 27px;
+}
+
+.role_permission th {
+	padding: 5px;
+}

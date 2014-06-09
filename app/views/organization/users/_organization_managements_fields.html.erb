@@ -1,11 +1,10 @@
 <div class="form-group">
-	Store Permissions
 		<p class="text-muted">      
           <small>Role</small>
         </p>		
 	    <div>
 	    	<%= f_num.simple_fields_for :role do |role| %>
-    		 <%= role.select :role_id, options_from_collection_for_select(@organization.roles, 'id', 'name'), {prompt: "Select a Role"}, {class: "form-control select-user-form"}%>
+    		 <%= role.select :role_id, options_from_collection_for_select(@organization.roles, 'id', 'name'), {prompt: "Select a Role"}, {class: "form-control select-user-form", required: "required"}%>
              <% end %>
 		</div>
 	<%if false %>

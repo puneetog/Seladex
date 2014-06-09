@@ -1,0 +1,44 @@
+<table border="1" class="role_permission">
+	<tr>
+		<th></th>
+		<th>Edit</td>
+		<th>Create</td>
+		<th>Delete</td>
+		<th>View</td>
+	</tr>
+	<tr>
+		<td>Contact</td>
+		<td><input type="checkbox" name="contact_edit" value="1" <% if @role.contact["edit"]=="1" %>checked<%end%>> </td>
+		<td><input type="checkbox" name="contact_create" value="1"  <% if @role.contact["create"]=="1" %>checked<%end%>></td>
+		<td><input type="checkbox" name="contact_delete" value="1"  <% if @role.contact["delete"]=="1" %>checked<%end%>></td>
+		<td><input type="checkbox" name="contact_view" value="1"  <% if @role.contact["view"]=="1" %>checked<%end%>></td>
+	</tr>
+	<tr>
+		<td>Orders</td>
+		<td><input type="checkbox" name="orders_edit" value="1"  <% if @role.orders["edit"]=="1" %>checked<%end%>> </td>
+		<td><input type="checkbox" name="orders_create" value="1" <% if @role.orders["create"]=="1" %>checked<%end%>></td>
+		<td><input type="checkbox" name="orders_delete" value="1" <% if @role.orders["delete"]=="1" %>checked<%end%>></td>
+		<td><input type="checkbox" name="orders_view" value="1" <% if @role.orders["view"]=="1" %>checked<%end%>></td>
+	</tr>
+	<tr>
+		<td>Invoice</td>
+		<td><input type="checkbox" name="invoice_edit" value="1"  <% if @role.invoice["edit"]=="1" %>checked<%end%>> </td>
+		<td><input type="checkbox" name="invoice_create" value="1" <% if @role.invoice["create"]=="1" %>checked<%end%>></td>
+		<td><input type="checkbox" name="invoice_delete" value="1" <% if @role.invoice["delete"]=="1" %>checked<%end%>></td>
+		<td><input type="checkbox" name="invoice_view" value="1" <% if @role.invoice["view"]=="1" %>checked<%end%>></td>
+	</tr>
+	<tr>
+		<td>Commission</td>
+		<td><input type="checkbox" name="commission_edit" value="1"  <% if @role.commission["edit"]=="1" %>checked<%end%>> </td>
+		<td><input type="checkbox" name="commission_create" value="1" <% if @role.commission["create"]=="1" %>checked<%end%>></td>
+		<td><input type="checkbox" name="commission_delete" value="1" <% if @role.commission["delete"]=="1" %>checked<%end%>></td>
+		<td><input type="checkbox" name="commission_view" value="1" <% if @role.commission["view"]=="1" %>checked<%end%>></td>
+	</tr>
+	<tr>
+		<td>User/Reps</td>
+		<td><input type="checkbox" name="user_rep_edit" value="1"  <% if @role.user_rep["edit"]=="1" %>checked<%end%>> </td>
+		<td><input type="checkbox" name="user_rep_create" value="1" <% if @role.user_rep["create"]=="1" %>checked<%end%>></td>
+		<td><input type="checkbox" name="user_rep_delete" value="1" <% if @role.user_rep["delete"]=="1" %>checked<%end%>></td>
+		<td><input type="checkbox" name="user_rep_view" value="1" <% if @role.user_rep["view"]=="1" %>checked<%end%>></td>
+	</tr>
+</table>

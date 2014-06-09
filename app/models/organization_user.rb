@@ -21,4 +21,8 @@ class OrganizationUser < User
 	def self.get_org_user_per(param)
 		return param[:organization_managements_attributes]
 	end
+
+	def role
+		self.organization_managements.last.role
+	end
 end
