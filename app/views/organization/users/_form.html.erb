@@ -78,8 +78,8 @@
       <p class="text-muted">
         <small>Brands Allocations</small>
       </p>
-      <div class="input-group" data-role="acknowledge-input">
-          <%= f.fields_for :organization_user_brands, @org_user.initialized_brands do |builder| %>
+      <div class="input-group" data-role="acknowledge-input">          
+          <%= f.fields_for :organization_user_brands, @org_user.initialized_brands(@organization) do |builder| %>
             <% brand = builder.object.brand %>
             <%= builder.hidden_field :brand_id %>
 

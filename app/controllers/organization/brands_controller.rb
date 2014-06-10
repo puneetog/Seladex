@@ -55,7 +55,7 @@ class Organization::BrandsController < ApplicationController
   end
 
   def check_authorize_resource
-    unless can? :create, User
+    unless can? :create, Brand
       flash[:error] = "Access Denied"
       redirect_to root_path
     end

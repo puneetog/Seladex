@@ -53,7 +53,7 @@ class OrganizationUsersController < ApplicationController
   end
 
   def check_authorize_resource
-    unless can? :create, User
+    unless can? :create, OrganizationUser 
     	flash[:error] = "Access Denied"
     	redirect_to root_path
     end

@@ -22,7 +22,7 @@ class OrganizationsController < ApplicationController
   	@organization = Organization.find(params[:id])
   	if @organization.update_attributes(organization_params)
 	  	flash[:message] = "Organization Successfully updated."
-	    redirect_to edit_organization_path(@organization)
+	    redirect_to organization_path(@organization)
 	  else
 	    render 'new'
 	  end

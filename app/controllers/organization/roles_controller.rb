@@ -1,4 +1,6 @@
 class Organization::RolesController < ApplicationController
+
+  
   def new
     @organization = Organization.find(params[:organization_id])
     @role = @organization.roles.new

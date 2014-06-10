@@ -32,9 +32,11 @@ class OrganizationUser < User
 		return param[:organization_managements_attributes]
 	end
 
-	def initialized_brands 
+	def initialized_brands(organization) 
+		organization_brands = organization.brands
+		# binding.pry
 	    [].tap do |o|
-	      Brand.all.each do |brand|
+	      organization_brands.each do |brand|
 	        if c = organization_user_brands.find { |c| c.brand_id == brand.id }
 	          o << c.tap { |c| c.enable ||= true }
 	        else
@@ -45,7 +47,10 @@ class OrganizationUser < User
     end
 
 	def role
-		self.organization_managements.last.role
+		self.organization_managements.last.try(:role)
 	end
+
+
+	
 
 end

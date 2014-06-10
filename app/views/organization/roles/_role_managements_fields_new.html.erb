@@ -1,66 +1,61 @@
 <div class="form-group">
-		<p class="text-muted">      
-          <small>Role</small>
-        </p>		
-	    <div>
-	    	<%= f_num.simple_fields_for :role do |role| %>
-    		 <%= role.select :role_id, options_from_collection_for_select(@organization.roles, 'id', 'name'), {prompt: "Select a Role", selected: @org_user.role.try(:id)}, {class: "form-control select-user-form", required: "required"}%>
-             <% end %>
-		</div>
-	<% if false %>
-		<table border="1">
+	<p class="text-muted">
+        <small>Role Permissions</small>
+      </p>
+	
+	<table border="1" class="role_permission">
 		<tr>
-		<td></td>
-		<td>View</td>
-		<td>Edit</td>
-		<td>Create</td>
-		<td>Delete</td>
+			<th></th>
+			<th>Edit</td>
+			<th>Create</td>
+			<th>Delete</td>
+			<th>View</td>
 		</tr>
-	<tr>
-		<%= f_num.simple_fields_for :contact do |cont| %>
+		<tr>
+
+		<%= f.simple_fields_for :contact do |cont| %>
 			<td>Contact</td>
-			<td><%= cont.check_box :edit, :checked=>""%></td>
+			<td><%= cont.check_box :edit%></td>
 			<td><%= cont.check_box :create%></td>
 			<td><%= cont.check_box :delete%></td>
 			<td><%= cont.check_box :view%></td>
 		<% end %>
-	</tr>
-	<tr>
-		<%= f_num.simple_fields_for :orders do |ord| %>
+		</tr>
+		<tr>
+		<%= f.simple_fields_for :orders do |ord| %>
 			<td>Order</td>
 			<td><%= ord.check_box :edit%></td>
 			<td><%= ord.check_box :create%></td>
 			<td><%= ord.check_box :delete%></td>
 			<td><%= ord.check_box :view%></td>
 		<% end %>
-	</tr>
-	<tr>
-		<%= f_num.simple_fields_for :invoice do |inv| %>
+		</tr>
+		<tr>
+		<%= f.simple_fields_for :invoice do |inv| %>
 			<td>Invoice</td>
 			<td><%= inv.check_box :edit%></td>
 			<td><%= inv.check_box :create%></td>
 			<td><%= inv.check_box :delete%></td>
 			<td><%= inv.check_box :view%></td>
 		<% end %>
-	</tr>
-	<tr>
-		<%= f_num.simple_fields_for :commission do |com| %>
+		</tr>
+		<tr>
+		<%= f.simple_fields_for :commission do |com| %>
 			<td>Commission</td>
 			<td><%= com.check_box :edit%></td>
 			<td><%= com.check_box :create%></td>
 			<td><%= com.check_box :delete%></td>
 			<td><%= com.check_box :view%></td>
 		<% end %>
-	</tr>
-	<tr>
-		<%= f_num.simple_fields_for :user_rep do |usr| %>
+		</tr>
+		<tr>
+		<%= f.simple_fields_for :user_rep do |usr| %>
 			<td>User/Reps</td>
 			<td><%= usr.check_box :edit%></td>
 			<td><%= usr.check_box :create%></td>
 			<td><%= usr.check_box :delete%></td>
 			<td><%= usr.check_box :view%></td>
 		<% end %>
-	</tr>
+		</tr>
 	</table>
-<%end%>
 </div>

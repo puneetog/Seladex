@@ -3,13 +3,20 @@ class Ability
   
   def initialize(user)
     user ||= User.new # guest user
+     
     
     if user.role? :admin
       can :manage, :all
+    elsif user.role? :organization_admin
+      can :read, :all
+      can [:create, :update], Organization
+      can :manage, OrganizationUser
+      can :manage, Brand
+      can :manage, Role
     else
       can :read, :all
-      cannot :read, Organization 
-      can [:create, :update], Organization
+      # cannot :read, Organization 
+      # can [:create, :update], Organization
       # can :create, Comment
       # can :update, Comment do |comment|
       #   comment.try(:user) == user || user.role?(:moderator)
