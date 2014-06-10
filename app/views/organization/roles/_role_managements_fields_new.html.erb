@@ -1,0 +1,61 @@
+<div class="form-group">
+	<p class="text-muted">
+        <small>Role Permissions</small>
+      </p>
+	
+	<table border="1" class="role_permission">
+		<tr>
+			<th></th>
+			<th>Edit</td>
+			<th>Create</td>
+			<th>Delete</td>
+			<th>View</td>
+		</tr>
+		<tr>
+
+		<%= f.simple_fields_for :contact do |cont| %>
+			<td>Contact</td>
+			<td><%= cont.check_box :edit%></td>
+			<td><%= cont.check_box :create%></td>
+			<td><%= cont.check_box :delete%></td>
+			<td><%= cont.check_box :view%></td>
+		<% end %>
+		</tr>
+		<tr>
+		<%= f.simple_fields_for :orders do |ord| %>
+			<td>Order</td>
+			<td><%= ord.check_box :edit%></td>
+			<td><%= ord.check_box :create%></td>
+			<td><%= ord.check_box :delete%></td>
+			<td><%= ord.check_box :view%></td>
+		<% end %>
+		</tr>
+		<tr>
+		<%= f.simple_fields_for :invoice do |inv| %>
+			<td>Invoice</td>
+			<td><%= inv.check_box :edit%></td>
+			<td><%= inv.check_box :create%></td>
+			<td><%= inv.check_box :delete%></td>
+			<td><%= inv.check_box :view%></td>
+		<% end %>
+		</tr>
+		<tr>
+		<%= f.simple_fields_for :commission do |com| %>
+			<td>Commission</td>
+			<td><%= com.check_box :edit%></td>
+			<td><%= com.check_box :create%></td>
+			<td><%= com.check_box :delete%></td>
+			<td><%= com.check_box :view%></td>
+		<% end %>
+		</tr>
+		<tr>
+		<%= f.simple_fields_for :user_rep do |usr| %>
+			<td>User/Reps</td>
+			<td><%= usr.check_box :edit%></td>
+			<td><%= usr.check_box :create%></td>
+			<td><%= usr.check_box :delete%></td>
+			<td><%= usr.check_box :view%></td>
+		<% end %>
+		</tr>
+	</table>
+</div>
