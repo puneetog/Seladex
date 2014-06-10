@@ -1,0 +1,66 @@
+<div class="well cust_form col-md-5" style="margin-left: 28%">
+<%= form_for @brand, :url => @brand.new_record? ? organization_organization_brands_path(@organization) : organization_organization_brand_path(@organization, @brand)  do |f| %>
+       <% if @brand.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@brand.errors.count, "error") %> prohibited
+        this User from being saved:
+      </h2>
+      <ul>
+        <% @brand.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>        
+    <div style="margin: 0 auto">
+    <div class="form-group">
+      <p class="text-muted">
+        <small>Brand name</small>
+      </p>
+      
+      <div class="input-group" data-role="acknowledge-input">
+        <%= f.text_field :name, required: "required", placeholder: "Name", class: "form-control" %>
+          <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+      </div>
+    </div> 
+
+      <div class="form-group">
+      <p class="text-muted">
+        <small>Description</small>
+      </p>
+      <div class="input-group" data-role="acknowledge-input">
+        <%= f.text_area :description, placeholder: "Description", class: "form-control" %>
+          <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <p class="text-muted">
+        <small>Commissions</small>
+      </p>
+          <div class="input-group" data-role="acknowledge-input">
+              <%= f.text_field :commission_rate, required: "required", placeholder: "Commission Rate", class: "form-control" %>
+               <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
+                <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+              </div>
+          </div>  
+
+     <div class="form-group">
+      <p class="text-muted">
+        <small>Territory</small>
+      </p>
+          <div class="input-group" data-role="acknowledge-input">
+              <%= f.text_field :territory, required: "required", placeholder: "Territory", class: "form-control" %>
+               <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
+                <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+              </div>
+          </div>   
+
+  
+     
+   </div>
+    <div class="form-group clear">
+      <%= f.submit "Save", class: "btn btn-default btn-lg"%>
+    </div>
+<% end %>
+  </div>

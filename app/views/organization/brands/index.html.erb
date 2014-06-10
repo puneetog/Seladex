@@ -1,0 +1,34 @@
+
+ <div class="well">
+ 	 <div style="width: 20%">
+ 	 	<%= link_to "New User", new_organization_user_path, class: "dbtn big twitter-big no-image btn-block"  %>	</div>
+	<div class="header">User Table <a class="headerclose"><i class="fa fa-times pull-right"></i></a> <a class="headerrefresh"><i class="fa fa-refresh pull-right"></i></a> <a class="headershrink"><i class="fa fa-chevron-down pull-right"></i></a></div>
+	<div class="table-responsive">
+		<table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date registered</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            	<% @org_users.each do |organization| %>
+                    <tr>
+                    	<td><%= organization.first_name %> </td>
+                        <td><%= organization.last_name %> </td>
+                        <td><%= organization.created_at.strftime("%Y/%m/%d") %></td>
+                        <td><%= organization.email %></td>               
+                        <td>
+                        	<%= link_to "Edit", edit_organization_path(organization) %>
+                        </td>                              
+                    </tr>
+                <% end %>
+                
+            </tbody>
+        </table>
+	</div>
+</div>
+
