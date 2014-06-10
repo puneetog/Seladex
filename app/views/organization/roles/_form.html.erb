@@ -23,7 +23,11 @@
         <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
       </div>
       <div class="input-group" data-role="acknowledge-input">
-        <%= render "role_managements_fields", f: f%>
+        <%if @role.new_record?%>
+          <%= render "role_managements_fields_new", f: f%>
+        <%else%>
+          <%= render "role_managements_fields", f: f%>
+        <%end%>
       </div>
     </div> 
     <div class="form-group clear">

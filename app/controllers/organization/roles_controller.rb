@@ -12,7 +12,7 @@ class Organization::RolesController < ApplicationController
   def update
     @role = Role.find(params[:id])
     if @role.update_attributes(role_params)
-      flash[:message] = "User Successfully updated."
+      flash[:message] = "Role Successfully updated."
       redirect_to organization_path(@role.organization)
     else
       render 'new'
