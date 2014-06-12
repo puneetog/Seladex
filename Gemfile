@@ -45,6 +45,7 @@ gem 'cancan'
 
 group :development do
 	gem 'pry'
+	gem 'quiet_assets'
 end
 gem 'activerecord-postgres-hstore'
 

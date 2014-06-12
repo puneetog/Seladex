@@ -1,6 +1,6 @@
-class CreateOrganizationAddresses < ActiveRecord::Migration
+class CreateAddresses < ActiveRecord::Migration
   def change
-    create_table :organization_addresses do |t|
+    create_table :addresses do |t|
       t.string :address
       t.string :city
       t.string :state
@@ -8,8 +8,9 @@ class CreateOrganizationAddresses < ActiveRecord::Migration
       t.string :country
       t.string :phone
       t.string :fax
-      t.string :type
-      t.integer :organization_id
+      t.string :address_type
+      t.integer :addressable_id
+      t.string :addressable_type
 
       t.timestamps
     end

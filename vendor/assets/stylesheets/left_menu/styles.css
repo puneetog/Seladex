@@ -3130,3 +3130,20 @@ body.modal-open,
 .role_permission th {
 	padding: 5px;
 }
+
+.account_form{
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.addresses{
+	float: left;
+	width: 30%;
+	margin-right: 26px;
+}
+
+.address_same_btn{
+	margin: -30px 3px 0 0;
+	float: left;
+}

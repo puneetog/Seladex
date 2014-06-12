@@ -43,6 +43,78 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: accounts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE accounts (
+    id integer NOT NULL,
+    general_note character varying(255),
+    organization_id character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: accounts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE accounts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: accounts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE accounts_id_seq OWNED BY accounts.id;
+
+
+--
+-- Name: addresses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE addresses (
+    id integer NOT NULL,
+    address character varying(255),
+    city character varying(255),
+    state character varying(255),
+    zip character varying(255),
+    country character varying(255),
+    phone character varying(255),
+    fax character varying(255),
+    address_type character varying(255),
+    addressable_id integer,
+    addressable_type character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: addresses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE addresses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: addresses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE addresses_id_seq OWNED BY addresses.id;
+
+
+--
 -- Name: admin_videos; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -73,6 +145,38 @@ CREATE SEQUENCE admin_videos_id_seq
 --
 
 ALTER SEQUENCE admin_videos_id_seq OWNED BY admin_videos.id;
+
+
+--
+-- Name: brand_accounts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE brand_accounts (
+    id integer NOT NULL,
+    brand_id integer,
+    account_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: brand_accounts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE brand_accounts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: brand_accounts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE brand_accounts_id_seq OWNED BY brand_accounts.id;
 
 
 --
@@ -111,30 +215,27 @@ ALTER SEQUENCE brands_id_seq OWNED BY brands.id;
 
 
 --
--- Name: organization_addresses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: contact_informations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE organization_addresses (
+CREATE TABLE contact_informations (
     id integer NOT NULL,
-    address character varying(255),
-    city character varying(255),
-    state character varying(255),
-    zip character varying(255),
-    country character varying(255),
-    phone character varying(255),
-    fax character varying(255),
-    address_type character varying(255),
-    organization_id integer,
+    phone integer,
+    fax integer,
+    email character varying(255),
+    website character varying(255),
+    location character varying(255),
+    account_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
 
 
 --
--- Name: organization_addresses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: contact_informations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE organization_addresses_id_seq
+CREATE SEQUENCE contact_informations_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -143,10 +244,10 @@ CREATE SEQUENCE organization_addresses_id_seq
 
 
 --
--- Name: organization_addresses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: contact_informations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE organization_addresses_id_seq OWNED BY organization_addresses.id;
+ALTER SEQUENCE contact_informations_id_seq OWNED BY contact_informations.id;
 
 
 --
@@ -230,6 +331,14 @@ CREATE TABLE organizations (
     email character varying(255),
     website character varying(255),
     status boolean DEFAULT false,
+    mailing_address text,
+    billing_address text,
+    city character varying(255),
+    state character varying(255),
+    zip character varying(255),
+    country character varying(255),
+    phone character varying(255),
+    fax character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     organization_admin_id integer
@@ -303,6 +412,40 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: statuses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE statuses (
+    id integer NOT NULL,
+    state character varying(255),
+    time_frame character varying(255),
+    description character varying(255),
+    brand_account_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: statuses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE statuses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: statuses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE statuses_id_seq OWNED BY statuses.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -357,7 +500,28 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY accounts ALTER COLUMN id SET DEFAULT nextval('accounts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY addresses ALTER COLUMN id SET DEFAULT nextval('addresses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY admin_videos ALTER COLUMN id SET DEFAULT nextval('admin_videos_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY brand_accounts ALTER COLUMN id SET DEFAULT nextval('brand_accounts_id_seq'::regclass);
 
 
 --
@@ -371,7 +535,7 @@ ALTER TABLE ONLY brands ALTER COLUMN id SET DEFAULT nextval('brands_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY organization_addresses ALTER COLUMN id SET DEFAULT nextval('organization_addresses_id_seq'::regclass);
+ALTER TABLE ONLY contact_informations ALTER COLUMN id SET DEFAULT nextval('contact_informations_id_seq'::regclass);
 
 
 --
@@ -406,7 +570,30 @@ ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY statuses ALTER COLUMN id SET DEFAULT nextval('statuses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY accounts
+    ADD CONSTRAINT accounts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: addresses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY addresses
+    ADD CONSTRAINT addresses_pkey PRIMARY KEY (id);
 
 
 --
@@ -418,6 +605,14 @@ ALTER TABLE ONLY admin_videos
 
 
 --
+-- Name: brand_accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY brand_accounts
+    ADD CONSTRAINT brand_accounts_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: brands_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -426,11 +621,11 @@ ALTER TABLE ONLY brands
 
 
 --
--- Name: organization_addresses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: contact_informations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY organization_addresses
-    ADD CONSTRAINT organization_addresses_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY contact_informations
+    ADD CONSTRAINT contact_informations_pkey PRIMARY KEY (id);
 
 
 --
@@ -463,6 +658,14 @@ ALTER TABLE ONLY organizations
 
 ALTER TABLE ONLY roles
     ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY statuses
+    ADD CONSTRAINT statuses_pkey PRIMARY KEY (id);
 
 
 --
@@ -588,13 +791,9 @@ INSERT INTO schema_migrations (version) VALUES ('20140605063109');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605093903');
 
-INSERT INTO schema_migrations (version) VALUES ('20140605094053');
-
 INSERT INTO schema_migrations (version) VALUES ('20140605100431');
 
 INSERT INTO schema_migrations (version) VALUES ('20140605101232');
-
-INSERT INTO schema_migrations (version) VALUES ('20140605120646');
 
 INSERT INTO schema_migrations (version) VALUES ('20140607080507');
 
@@ -607,3 +806,11 @@ INSERT INTO schema_migrations (version) VALUES ('20140607112610');
 INSERT INTO schema_migrations (version) VALUES ('20140607123601');
 
 INSERT INTO schema_migrations (version) VALUES ('20140607123714');
+
+INSERT INTO schema_migrations (version) VALUES ('20140610120925');
+
+INSERT INTO schema_migrations (version) VALUES ('20140610122957');
+
+INSERT INTO schema_migrations (version) VALUES ('20140611090722');
+
+INSERT INTO schema_migrations (version) VALUES ('20140611123225');

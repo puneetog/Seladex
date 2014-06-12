@@ -4,7 +4,8 @@ class Organization < ActiveRecord::Base
 
     has_many :organization_managements
     has_many :brands
-    has_many :organization_addresses, dependent: :destroy
+    has_many :accounts
+    has_many :addresses, :as => :addressable, dependent: :destroy
 	has_many :organization_users, through: :organization_managements
     has_many :roles, dependent: :destroy
     belongs_to :organization_admin
@@ -14,10 +15,10 @@ class Organization < ActiveRecord::Base
 	after_create :confirmation_mail
      
     validates :organization_admin, presence: true
-    validates :organization_addresses, presence: true
+    validates :addresses, presence: true
 
     accepts_nested_attributes_for :organization_admin, :reject_if => :all_blank
-    accepts_nested_attributes_for :organization_addresses, :reject_if => :all_blank, :allow_destroy => true
+    accepts_nested_attributes_for :addresses, :reject_if => :all_blank, :allow_destroy => true
 
 
     accepts_nested_attributes_for :roles, allow_destroy: true, reject_if: :all_blank
@@ -49,10 +50,10 @@ class Organization < ActiveRecord::Base
     end
 
     def mailing_address
-        organization_addresses.where(address_type: "Mailing")[0]
+        addresses.where(address_type: "Mailing")[0]
     end
 
      def billing_address
-        organization_addresses.where(address_type: "Billing")[0]
+        addresses.where(address_type: "Billing")[0]
     end
 end

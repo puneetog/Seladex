@@ -59,6 +59,7 @@ Seladex::Application.routes.draw do
         resources :users
         resources :brands
         resources :roles
+        resources :accounts
       end
     end
   resources :organizations

@@ -1,0 +1,21 @@
+<div class="account_form">
+	<span class="input-group-addon" data-role="acknowledgement">
+		<i>State</i>
+	</span>
+	<%= f.text_field :state, placeholder: "State", class: "form-control" %>
+</div>
+
+<div class="account_form">
+	<span class="input-group-addon" data-role="acknowledgement">
+		<i>Time Frame</i>
+	</span>
+	<%= f.select :time_frame, options_for_select([["30"],["60"],["90"]]),{}, class: "form-control" %>
+</div>
+<div class="account_form">
+	<span class="input-group-addon" data-role="acknowledgement">
+		<i>Description</i>
+	</span>
+	<%= f.text_field :description, placeholder: "Description", class: "form-control" %>
+</div>
+
+<p><%#= f.link_to_remove "Remove this status" %></p>

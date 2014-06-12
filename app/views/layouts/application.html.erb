@@ -1,5 +1,5 @@
+
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -17,7 +17,7 @@
 </head>
 
 <body>
-
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 <% flash.each do |key, value| %>
   <div class="alerts">
     <div class="alert-message <%= key %>">
@@ -37,12 +37,12 @@
         <%=render "shared/footer" %>
 
     </div>
-    <!-- /.container -->
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     
-         <%= javascript_include_tag "legend/leftmenu" %>
-         <%= javascript_include_tag "legend/theme" %>
-         <%= javascript_include_tag "legend/script" %>
+    <!-- /.container -->
+    
+     <%= javascript_include_tag "legend/leftmenu" %>
+     <%= javascript_include_tag "legend/theme" %>
+     <%= javascript_include_tag "legend/script" %>
 
 </body>
 

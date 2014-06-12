@@ -29,9 +29,6 @@ class Organization::BrandsController < ApplicationController
   end
 
   def create
-    # usr = OrganizationUser.get_org_user(params[:organization_user])
-    # #logger.debug(usr)
-    # usr_mang = OrganizationUser.get_org_user_per(params[:organization_user])
     @organization = Organization.find(params[:organization_id])
     @brand = @organization.brands.new(brand_params)    
 	  if @organization.save
@@ -40,8 +37,6 @@ class Organization::BrandsController < ApplicationController
 	  else        
 	    render 'new'
 	  end
-    
-    
   end
 
   def destroy

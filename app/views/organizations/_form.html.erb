@@ -84,8 +84,8 @@
                  </div>
                 <% i = 0 %> 
                 <div class="pull-right col-md-5">
-                <%= f.fields_for :organization_addresses do |org_address| %>  
-                   <% address_type = OrganizationAddress::ADDRESS_TYPE[i] %>        
+                <%= f.fields_for :addresses do |org_address| %>  
+                   <% address_type = Address::ADDRESS_TYPE[i] %>        
                    <%= org_address.hidden_field :address_type, value: address_type %>
                    <% if i==1 %>
                      <%= check_box_tag "copy_mailing_address" %>

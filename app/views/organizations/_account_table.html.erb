@@ -1,0 +1,34 @@
+ <div class="well">
+  	<div style="width: 20%">
+ 	 	<%= link_to "New Account", new_organization_organization_account_path(@organization), class: "dbtn big twitter-big no-image btn-block"  %>	
+ 	</div>
+ 	
+	<div class="header">Account Table </div>
+
+	<div class="table-responsive">
+		<table class="table table-hover">
+	        <thead>
+	            <tr>
+	                <th>Notes</th>
+	                <th>Date registered</th>
+	                <th>Contact Information</th>
+	                <th></th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	        	<% @organization.accounts.each do |account| %>
+	                <tr>
+	                    <td><%= account.general_note %> </td>
+	                    <td><%= account.created_at.strftime("%Y/%m/%d") %></td>
+	                    <td><%#= account.commission_rate %></td>              
+	                    <td><%#= account.territory %></td>                                                  
+	                    <td>
+	                    	<%= link_to "Show", organization_organization_account_path(@organization,account) %>
+	                    </td>                              
+	                </tr>
+	            <% end %>
+	            
+	        </tbody>
+	    </table>
+	</div>
+</div>

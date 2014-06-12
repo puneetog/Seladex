@@ -1,0 +1,18 @@
+<table border="1" class="role_permission">
+	<tr>
+		<th>Phone</th>
+		<th>Location</th>
+		<th>Email</th>
+		<th>Website</th>
+		<th>Fax</th>
+	</tr>
+	<%@account.contact_informations.each do |ai|%>
+		<tr>
+			<td><%=ai.phone%></td>
+			<td><%=ai.location%></td>
+			<td><%=ai.email%></td>
+			<td><%=ai.website%></td>
+			<td><%=ai.fax%></td>
+		</tr>
+	<%end%>
+</table>

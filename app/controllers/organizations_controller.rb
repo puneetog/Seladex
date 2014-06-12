@@ -11,7 +11,7 @@ class OrganizationsController < ApplicationController
   def new
   	@organization = Organization.new
     @organization.organization_admin = OrganizationAdmin.new
-    2.times { @organization.organization_addresses.build }
+    2.times { @organization.addresses.build }
   end
 
   def edit
