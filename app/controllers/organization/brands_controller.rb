@@ -11,7 +11,8 @@ class Organization::BrandsController < ApplicationController
   end
 
   def new   
-    @brand =Brand.new()   
+    @brand =Brand.new() 
+    @brand.build_statuses
   end
 
   def edit
@@ -46,7 +47,9 @@ class Organization::BrandsController < ApplicationController
   
   def brand_params
     # params.require(:organization_brand).permit!
-    params.require(:brand).permit(:name, :description, :commission_rate, :territory)
+    params.require(:brand).permit(:name, :manufacturer, :contact, :email, :website, 
+                                  :address, :city, :state, :zip, :country, :phone, 
+                                  :fax, :description, :commission_rate, :territory, :logo, brand_statuses_attributes: [:state, :condition, :duration, :rule, :id, :_destroy])
   end
 
   def check_authorize_resource

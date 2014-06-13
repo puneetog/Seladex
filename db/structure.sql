@@ -95,7 +95,6 @@ CREATE TABLE addresses (
     updated_at timestamp without time zone
 );
 
-
 --
 -- Name: addresses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
@@ -192,7 +191,22 @@ CREATE TABLE brands (
     territory character varying(255),
     organization_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    manufacturer character varying(255),
+    contact character varying(255),
+    address character varying(255),
+    city character varying(255),
+    state character varying(255),
+    zip character varying(255),
+    country character varying(255),
+    phone character varying(255),
+    fax character varying(255),
+    email character varying(255),
+    website character varying(255),
+    logo_file_name character varying(255),
+    logo_content_type character varying(255),
+    logo_file_size integer,
+    logo_updated_at timestamp without time zone
 );
 
 
@@ -342,7 +356,12 @@ CREATE TABLE organizations (
     fax character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    organization_admin_id integer
+    organization_admin_id integer,
+    company_name character varying(255),
+    logo_file_name character varying(255),
+    logo_content_type character varying(255),
+    logo_file_size integer,
+    logo_updated_at timestamp without time zone
 );
 
 
@@ -380,7 +399,8 @@ CREATE TABLE roles (
     orders hstore,
     commission hstore,
     invoice hstore,
-    user_rep hstore
+    user_rep hstore,
+    description character varying(255)
 );
 
 
@@ -447,6 +467,47 @@ ALTER SEQUENCE statuses_id_seq OWNED BY statuses.id;
 
 
 --
+-- Name: territories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE territories (
+    id integer NOT NULL,
+    name character varying(255),
+    abbreviation character varying(255),
+    country character varying(255),
+    type character varying(255),
+    sort character varying(255),
+    status character varying(255),
+    occupied character varying(255),
+    notes character varying(255),
+    fips_state character varying(255),
+    assoc_press character varying(255),
+    account_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: territories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE territories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: territories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE territories_id_seq OWNED BY territories.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -474,7 +535,8 @@ CREATE TABLE users (
     country character varying(255),
     cell_phone character varying(255),
     home_phone character varying(255),
-    role character varying(255) DEFAULT 'user'::character varying
+    role character varying(255) DEFAULT 'user'::character varying,
+    territory character varying(255)
 );
 
 
@@ -578,6 +640,13 @@ ALTER TABLE ONLY statuses ALTER COLUMN id SET DEFAULT nextval('statuses_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY territories ALTER COLUMN id SET DEFAULT nextval('territories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -667,6 +736,14 @@ ALTER TABLE ONLY roles
 
 ALTER TABLE ONLY statuses
     ADD CONSTRAINT statuses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: territories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY territories
+    ADD CONSTRAINT territories_pkey PRIMARY KEY (id);
 
 
 --
@@ -818,4 +895,16 @@ INSERT INTO schema_migrations (version) VALUES ('20140611123225');
 
 INSERT INTO schema_migrations (version) VALUES ('20140613052916');
 
-INSERT INTO schema_migrations (version) VALUES ('20140613111848');
+INSERT INTO schema_migrations (version) VALUES ('20140613055828');
+
+INSERT INTO schema_migrations (version) VALUES ('20140613065421');
+
+INSERT INTO schema_migrations (version) VALUES ('20140613073956');
+
+INSERT INTO schema_migrations (version) VALUES ('20140613081018');
+
+INSERT INTO schema_migrations (version) VALUES ('20140613083008');
+
+INSERT INTO schema_migrations (version) VALUES ('20140613092333');
+
+INSERT INTO schema_migrations (version) VALUES ('20140613094807');
