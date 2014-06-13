@@ -2,11 +2,15 @@
 	<tr>
 		<th>Name</th>
 		<th>Status</th>
+		<th>Reps</th>
+		<th>Territory</th>
 	</tr>
 	<%@account.brand_accounts.each do |ba|%>
 		<tr>
 			<td><%=ba.brand.name%></td>
 			<td><%=ba.status%></td>
+			<td><%=ba.brand.representative_names%></td>
+			<td><%=ba.brand.territory%></td>
 		</tr>
 	<%end%>
 </table>

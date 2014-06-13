@@ -1,5 +1,5 @@
 <div class="well cust_form">
-<%= form_for @brand, :url => @brand.new_record? ? organization_organization_brands_path(@organization) : organization_organization_brand_path(@organization, @brand)  do |f| %>
+<%= nested_form_for @brand, :url => @brand.new_record? ? organization_organization_brands_path(@organization) : organization_organization_brand_path(@organization, @brand)  do |f| %>
        <% if @brand.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -101,7 +101,7 @@
         </p>
         
         <div class="input-group" data-role="acknowledge-input">
-          <%= f.file_field :logo, required: "required", placeholder: "Logo", class: "form-control" %>
+          <%= f.file_field :logo, placeholder: "Logo", class: "form-control" %>
             <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
         </div>
       </div>  
@@ -203,6 +203,17 @@
       </div>   -->
      
    </div>
+
+   <div class="clear" >
+      <%= f.fields_for :brand_statuses, f: f %>
+      <p>
+        <%= f.link_to_add "Add a Status", :brand_statuses %>
+      </p>
+    </div>
+
+
+
+
     <div class="form-group clear">
       <%= f.submit "Save", class: "btn btn-default btn-lg"%>
     </div>
