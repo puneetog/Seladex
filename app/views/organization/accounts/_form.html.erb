@@ -52,8 +52,8 @@
         </p>
         <div class="input-group" data-role="acknowledge-input">
           <%= f.fields_for :brand_accounts %>
-          <p style="float:left">
-            <%#= f.link_to_add "Add Brand", :brand_accounts %>
+          <p style="float:left" class="brand_acc">
+            <%= f.link_to_add "Add Brand", :brand_accounts %>
           </p>
         </div>
       </div>
