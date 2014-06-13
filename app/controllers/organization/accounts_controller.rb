@@ -4,6 +4,7 @@ class Organization::AccountsController < ApplicationController
   def new
     @organization = Organization.find(params[:organization_id])
     @account = Account.new
+    @brand_count = @organization.brands.count
     @account.build_associations(@organization)
   end
 

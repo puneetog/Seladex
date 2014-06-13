@@ -51,7 +51,8 @@ CREATE TABLE accounts (
     general_note character varying(255),
     organization_id character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    name character varying(255)
 );
 
 
@@ -814,3 +815,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140610122957');
 INSERT INTO schema_migrations (version) VALUES ('20140611090722');
 
 INSERT INTO schema_migrations (version) VALUES ('20140611123225');
+
+INSERT INTO schema_migrations (version) VALUES ('20140613052916');

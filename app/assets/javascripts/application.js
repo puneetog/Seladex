@@ -17,5 +17,19 @@
 //= require custom
 //= require_tree .
 
+$(document).ready(function(){
+    $(document).on('change', '.brand_name select', function(){
+    	var $this = $(this)
+    	var value = $this.val();
+    	$(".brand_name select").each(function(){
+    		if($this.attr('id') != $(this).attr('id') && $(this).val() == value){
+    			alert("You have already added this brand");
+    			$this.val('');
+    		}
+    	});
+    });
+});
+
+
 	
 
