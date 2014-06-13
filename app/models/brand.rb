@@ -20,6 +20,11 @@ class Brand < ActiveRecord::Base
       organization_users.map{|user| user.name}.join(", ")
 	end
 
+	def representative_names
+      	status = self.statuses.sort_by{|s| s.time_frame.to_i}.first
+		return status.present? ? status.state : ''
+	end
+
 	def build_statuses
 		 1.times { brand_statuses.build } if self.brand_statuses.blank?
 	end

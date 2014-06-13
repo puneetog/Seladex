@@ -95,6 +95,7 @@ CREATE TABLE addresses (
     updated_at timestamp without time zone
 );
 
+
 --
 -- Name: addresses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
@@ -177,6 +178,41 @@ CREATE SEQUENCE brand_accounts_id_seq
 --
 
 ALTER SEQUENCE brand_accounts_id_seq OWNED BY brand_accounts.id;
+
+
+--
+-- Name: brand_statuses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE brand_statuses (
+    id integer NOT NULL,
+    state character varying(255),
+    condition character varying(255),
+    duration integer,
+    rule character varying(255),
+    brand_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: brand_statuses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE brand_statuses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: brand_statuses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE brand_statuses_id_seq OWNED BY brand_statuses.id;
 
 
 --
@@ -591,6 +627,13 @@ ALTER TABLE ONLY brand_accounts ALTER COLUMN id SET DEFAULT nextval('brand_accou
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY brand_statuses ALTER COLUMN id SET DEFAULT nextval('brand_statuses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY brands ALTER COLUMN id SET DEFAULT nextval('brands_id_seq'::regclass);
 
 
@@ -680,6 +723,14 @@ ALTER TABLE ONLY admin_videos
 
 ALTER TABLE ONLY brand_accounts
     ADD CONSTRAINT brand_accounts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: brand_statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY brand_statuses
+    ADD CONSTRAINT brand_statuses_pkey PRIMARY KEY (id);
 
 
 --
@@ -908,3 +959,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140613083008');
 INSERT INTO schema_migrations (version) VALUES ('20140613092333');
 
 INSERT INTO schema_migrations (version) VALUES ('20140613094807');
+
+INSERT INTO schema_migrations (version) VALUES ('20140613111848');
+
+INSERT INTO schema_migrations (version) VALUES ('20140613122324');

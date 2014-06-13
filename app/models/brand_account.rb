@@ -10,8 +10,4 @@ class BrandAccount < ActiveRecord::Base
 		self
 	end
 
-	def status
-		status = self.statuses.sort_by{|s| s.time_frame.to_i}.first
-		return status.present? ? status.state : ''
-	end
 end
