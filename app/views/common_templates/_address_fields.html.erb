@@ -5,7 +5,7 @@
          <% address_type = Address::ADDRESS_TYPE[i] %>        
          <%= org_address.hidden_field :address_type, value: address_type %>
          <div>
-         <% if i==1 %>
+         <% if i==1 %>  
          <span class="address_same_btn">
            <%= check_box_tag "copy_mailing_address" %>
            Same as mailing address

@@ -1,15 +1,14 @@
-<div style="float:left;">
+<!-- <div> -->
+    <div>
 	<p class="brand_name" style="font-size:16px;">
-		<%=f.collection_select :brand_id, Brand.all, :id, :name, {:prompt => 'Select Brand'}%>
-	<p>
-    <%= f.fields_for :statuses %>
-	<p style="float:left"><%#= f.link_to_add "Add a Status", :statuses %></p>
-</div>
+		<%=f.collection_select :brand_id, Brand.all, :id, :name, {:prompt => 'Select Brand'}, required: "required"%>
+		</div>
+		<div>
+	<!-- <p> -->
+	    <%= f.fields_for :statuses %>
+		<%= f.link_to_add "Add a Status", :statuses %>
+	</div>
 
-<script>
-	var brand_count = "<%=@brand_count%>";
-	if($('.brand_name').length == brand_count){
-		$('.add_brand').find('a').remove();
-	}
-</script>
-<p style="float:left"><%= f.link_to_remove "Remove Brand"%></p>
+<!-- </div> -->
+
+<%#= f.link_to_remove "Remove Brand"%>

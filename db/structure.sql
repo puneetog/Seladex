@@ -221,8 +221,8 @@ ALTER SEQUENCE brands_id_seq OWNED BY brands.id;
 
 CREATE TABLE contact_informations (
     id integer NOT NULL,
-    phone integer,
-    fax integer,
+    phone character varying(255),
+    fax character varying(255),
     email character varying(255),
     website character varying(255),
     location character varying(255),
@@ -817,3 +817,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140611090722');
 INSERT INTO schema_migrations (version) VALUES ('20140611123225');
 
 INSERT INTO schema_migrations (version) VALUES ('20140613052916');
+
+INSERT INTO schema_migrations (version) VALUES ('20140613111848');

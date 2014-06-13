@@ -8,9 +8,10 @@ class Account < ActiveRecord::Base
 	accepts_nested_attributes_for :contact_informations,:brand_accounts,:addresses, allow_destroy: true, reject_if: :all_blank
 
    def build_associations(organization)
+      count = organization.brands.count
       1.times { contact_informations.build } if self.contact_informations.empty?
       3.times { addresses.build } if self.addresses.empty?
-      1.times { brand_accounts.build } if self.brand_accounts.empty?
+      count.times { brand_accounts.build } if self.brand_accounts.empty?
       brand_accounts.each(&:build_associations)
       self
     end
