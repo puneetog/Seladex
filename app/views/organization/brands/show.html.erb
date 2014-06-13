@@ -2,20 +2,77 @@
   
   <div class="form-group cust_show_form">
   	<h3>Brand</h3>
+    <div class="col-md-5 pull-left">
     <p class="text-muted ">
-      <h4>Name</h4> :    <h4><span><%=@brand.name%></span></h4>
+      <h4>Brand Logo</h4> :    <h4><span><%= image_tag @brand.logo.url(:thumb) %></span></h4>
+    </p> 
+
+    <p class="text-muted ">
+      <h4>Brand Name / Label</h4> :    <h4><span><%=@brand.name%></span></h4>
+    </p> 
+    <p class="text-muted ">
+      <h4>Manufacturer</h4> :    <h4><span><%=@brand.manufacturer%></span></h4>
     </p>
+     <p class="text-muted ">
+      <h4>Contact / Title</h4> :    <h4><span><%=@brand.contact%></span></h4>
+    </p>
+     <p class="text-muted ">
+      <h4>Address</h4> :    <h4><span><%=@brand.address%></span></h4>
+    </p> 
     <p class="text-muted ">
-      <h4>Description</h4> :    <h4><span><%=@brand.description%></span></h4>
-    </p>                  
+      <h4>City</h4> :    <h4><span><%=@brand.city%></span></h4>
+    </p> 
+    <p class="text-muted ">
+      <h4>State</h4> :    <h4><span><%=@brand.state%></span></h4>
+    </p>  
+    <p class="text-muted ">
+      <h4>Zip</h4> :    <h4><span><%=@brand.zip%></span></h4>
+    </p>  
+    <p class="text-muted ">
+      <h4>Country</h4> :    <h4><span><%=@brand.country%></span></h4>
+    </p>
+
+    </div> 
+
+    <div class="col-md-5 pull-right"> 
+    <p class="text-muted ">
+      <h4>Phone</h4> :    <h4><span><%=@brand.phone%></span></h4>
+    </p> 
+    <p class="text-muted ">
+      <h4>Fax</h4> :    <h4><span><%=@brand.fax%></span></h4>
+    </p>
+
+    <p class="text-muted ">
+      <h4>Email</h4> :    <h4><span><%=@brand.email%></span></h4>
+    </p>
+
+    <p class="text-muted ">
+      <h4>Website</h4> :    <h4><span><%=@brand.website%></span></h4>
+    </p>
+
+    <p class="text-muted ">
+      <h4>Territory(states)</h4> :    <h4><span><%=@brand.territory%></span></h4>
+    </p>
+
+    <p class="text-muted ">
+      <h4>Reps</h4> :    <h4><span><%=@brand.representative_names%></span></h4>
+    </p>
+
+
     <p class="text-muted ">
       <h4>Commission Rate</h4> :   <h4><span><%=@brand.commission_rate%></span></h4>
     </p>
+
+
+    <p class="text-muted ">
+      <h4>Notes</h4> :    <h4><span><%=@brand.description%></span></h4>
+    </p>                  
     <p class="text-muted ">
       <h4>Territory</h4> :   <h4><span><%=@brand.territory%></span></h4>
     </p>
   </div>
-   <div class="pull-left" style="width: 20%">
+  </div>
+   <div class="pull-left clear" style="width: 20%">
     <%= link_to "Edit Organization", edit_organization_organization_brand_path(@brand.organization, @brand), class: "dbtn big twitter-big no-image btn-block"  %> 
      </div>
 

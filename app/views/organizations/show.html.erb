@@ -1,7 +1,7 @@
       <div class="well cust_form">
             <div >
             <div class="form-group cust_show_form pull-left col-md-4">
-            	<h3>Mailing Address</h3>
+            	<h3>Organization</h3>
               <p class="text-muted ">
                 <h4>Website</h4> :    <h4><span><%=@organization.website%></span></h4>
               </p>
@@ -10,6 +10,9 @@
               </p>                  
               <p class="text-muted ">
                 <h4>Email</h4> :   <h4><span><%=@organization.email%></span></h4>
+              </p>
+              <p class="text-muted ">
+                <h4>Logo</h4> :   <h4><span><%= image_tag @organization.logo.url(:thumb) %></span></h4>
               </p>
               
             </div>

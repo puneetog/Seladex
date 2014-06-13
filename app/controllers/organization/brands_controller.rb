@@ -46,7 +46,9 @@ class Organization::BrandsController < ApplicationController
   
   def brand_params
     # params.require(:organization_brand).permit!
-    params.require(:brand).permit(:name, :description, :commission_rate, :territory)
+    params.require(:brand).permit(:name, :manufacturer, :contact, :email, :website, 
+                                  :address, :city, :state, :zip, :country, :phone, 
+                                  :fax, :description, :commission_rate, :territory, :logo)
   end
 
   def check_authorize_resource

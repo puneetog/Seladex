@@ -1,4 +1,4 @@
-<div class="well cust_form col-md-5" style="margin-left: 28%">
+<div class="well cust_form">
 <%= form_for @brand, :url => @brand.new_record? ? organization_organization_brands_path(@organization) : organization_organization_brand_path(@organization, @brand)  do |f| %>
        <% if @brand.errors.any? %>
     <div id="error_explanation">
@@ -14,47 +14,193 @@
     </div>
   <% end %>        
     <div style="margin: 0 auto">
-    <div class="form-group">
-      <p class="text-muted">
-        <small>Brand name</small>
-      </p>
-      
-      <div class="input-group" data-role="acknowledge-input">
-        <%= f.text_field :name, required: "required", placeholder: "Name", class: "form-control" %>
-          <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
-      </div>
-    </div> 
+    <div class="col-md-5 pull-left" >
+      <div class="form-group">
+        <p class="text-muted">
+          <small>Brand name</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_field :name, required: "required", placeholder: "Name", class: "form-control" %>
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+        </div>
+      </div>  
 
       <div class="form-group">
-      <p class="text-muted">
-        <small>Description</small>
-      </p>
-      <div class="input-group" data-role="acknowledge-input">
-        <%= f.text_area :description, placeholder: "Description", class: "form-control" %>
-          <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
-      </div>
-    </div>
-    <div class="form-group">
-      <p class="text-muted">
-        <small>Commissions</small>
-      </p>
-          <div class="input-group" data-role="acknowledge-input">
-              <%= f.text_field :commission_rate, required: "required", placeholder: "Commission Rate", class: "form-control" %>
-               <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
-                <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
-              </div>
-          </div>  
+        <p class="text-muted">
+          <small>Manufacturer</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_field :manufacturer, required: "required", placeholder: "Manufacturer", class: "form-control" %>
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+        </div>
+      </div> 
+      
 
-     <div class="form-group">
+      <div class="form-group">
+        <p class="text-muted">
+          <small>Contact/Title</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_field :contact, required: "required", placeholder: "Contact", class: "form-control" %>
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+        </div>
+      </div> 
+
+
+      <div class="form-group">
+        <p class="text-muted">
+          <small>Notes</small>
+        </p>
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_area :description, placeholder: "Notes", class: "form-control" %>
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <p class="text-muted">
+          <small>Commissions</small>
+        </p>
+            <div class="input-group" data-role="acknowledge-input">
+                <%= f.text_field :commission_rate, required: "required", placeholder: "Commission Rate", class: "form-control" %>
+                 <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
+                  <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+                </div>
+            </div> 
+
+
+
+      <div class="form-group">
+        <p class="text-muted">
+          <small>Email</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_field :email, required: "required", placeholder: "Email", class: "form-control" %>
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+        </div>
+      </div>    
+
+      <div class="form-group">
+        <p class="text-muted">
+          <small>Website</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_field :website, required: "required", placeholder: "Website", class: "form-control" %>
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+        </div>
+      </div>  
+
+       <div class="form-group">
+        <p class="text-muted">
+          <small>Logo</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.file_field :logo, required: "required", placeholder: "Logo", class: "form-control" %>
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+        </div>
+      </div>  
+
+    </div>
+    <div class="col-md-5 pull-right">
+
+      <div class="form-group">
+        <p class="text-muted">
+          <small>Address</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_field :address, required: "required", placeholder: "Address", class: "form-control" %>
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+        </div>
+      </div>     
+
+      <div class="form-group">
+        <p class="text-muted">
+          <small>City</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_field :city, required: "required", placeholder: "City", class: "form-control" %>
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+        </div>
+      </div>     
+
+      <div class="form-group">
+        <p class="text-muted">
+          <small>State</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_field :state, required: "required", placeholder: "State", class: "form-control" %>
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+        </div>
+      </div>  
+
+      <div class="form-group">
+        <p class="text-muted">
+          <small>Zip</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_field :zip, required: "required", placeholder: "Zip", class: "form-control" %>
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+        </div>
+      </div> 
+
+         <div class="form-group">
+        <p class="text-muted">
+          <small>Country</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_field :country, required: "required", placeholder: "Country", class: "form-control" %>
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+        </div>
+      </div> 
+
+         <div class="form-group">
+        <p class="text-muted">
+          <small>Phone</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_field :phone, required: "required", placeholder: "Phone", class: "form-control" %>
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+        </div>
+      </div> 
+
+         <div class="form-group">
+        <p class="text-muted">
+          <small>Fax</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_field :fax, required: "required", placeholder: "Fax", class: "form-control" %>
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+        </div>
+      </div>    
+
+    </div>
+
+
+
+
+   <!--   <div class="form-group">
       <p class="text-muted">
         <small>Territory</small>
       </p>
       <div class="input-group" data-role="acknowledge-input">
-          <%= f.text_field :territory, required: "required", placeholder: "Territory", class: "form-control" %>
-           <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
+          <%#= f.text_field :territory, required: "required", placeholder: "Territory", class: "form-control" %>
+          
             <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
           </div>
-      </div>  
+      </div>   -->
      
    </div>
     <div class="form-group clear">

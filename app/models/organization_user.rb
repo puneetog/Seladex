@@ -18,6 +18,11 @@ class OrganizationUser < User
 	# 	# self
 	# end
 
+    def brand_names
+    	brands.pluck(:name).join(", ")
+    end
+
+
 	def role_name
 		organization_managements.last.role.try(:name)
 	end

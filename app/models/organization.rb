@@ -23,6 +23,9 @@ class Organization < ActiveRecord::Base
 
     accepts_nested_attributes_for :roles, allow_destroy: true, reject_if: :all_blank
 
+    has_attached_file :logo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+    validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
+
     def build_rol_associations
       1.times { roles.build } if self.roles.empty?
       self

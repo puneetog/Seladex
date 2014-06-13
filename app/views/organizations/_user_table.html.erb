@@ -1,6 +1,6 @@
  <div class="well">
  	  	<div style="width: 20%">
- 	 	<%= link_to "New Organization User", new_organization_organization_user_path(@organization), class: "dbtn big twitter-big no-image btn-block"  %>	</div>
+ 	 	<%= link_to "Add User", new_organization_organization_user_path(@organization), class: "dbtn big twitter-big no-image btn-block"  %>	</div>
  	
 	                    	<div class="header">Organization Table </div>
 	                    	
@@ -8,9 +8,10 @@
 	                    		<table class="table table-hover">
 	                                <thead>
 	                                    <tr>
+	                                        <th>Name</th>
 	                                        <th>Email</th>
 	                                        <th>Date registered</th>
-	                                        <th>Name</th>
+	                                        <th>Brands</th>
 	                                        
 	                                        <th></th>
 	                                    </tr>
@@ -18,9 +19,10 @@
 	                                <tbody>
 	                                	<% @organization.organization_users.each do |user| %>
 		                                    <tr>
+		                                        <td><%= user.name.try(:humanize) %></td>                        
 		                                        <td><%= user.email %> </td>
 		                                        <td><%= user.created_at.strftime("%Y/%m/%d") %></td>
-		                                        <td><%= user.name.try(:humanize) %></td>                                                  
+		                                        <td><%= user.brand_names %></td>
 		                                        <td>
 		                                        	<%= link_to "Show", organization_organization_user_path(@organization,user) %>
 		                                        </td>                              
