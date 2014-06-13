@@ -3147,3 +3147,9 @@ body.modal-open,
 	margin: -30px 3px 0 0;
 	float: left;
 }
+
+.brand_select{
+	width: 189px;
+	height: 44px;
+	padding: 6PX;
+}
