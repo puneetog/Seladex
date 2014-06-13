@@ -9,7 +9,9 @@ class Organization::AccountsController < ApplicationController
   end
 
   def edit
+    @organization = Organization.find(params[:organization_id])
     @account = Account.find(params[:id])    
+    @brand_count = @organization.brands.count
   end
 
   def update
