@@ -1,6 +1,7 @@
 class Organization::BrandsController < ApplicationController
   before_filter :check_authorize_resource
 	before_filter :organization_brand
+  before_filter :process_territory_attrs, only: [:create, :update]
 
   def index
     @org_users = Brand.all
@@ -49,7 +50,7 @@ class Organization::BrandsController < ApplicationController
     # params.require(:organization_brand).permit!
     params.require(:brand).permit(:name, :manufacturer, :contact, :email, :website, 
                                   :address, :city, :state, :zip, :country, :phone, 
-                                  :fax, :description, :commission_rate, :territory, :logo, brand_statuses_attributes: [:state, :condition, :duration, :rule, :id, :_destroy])
+                                  :fax, :description, :commission_rate, :territory, :logo, brand_statuses_attributes: [:state, :condition, :duration, :rule, :id, :_destroy], territory_brands_attributes: [:enable, :territory_id, :id, :_destroy])
   end
 
   def check_authorize_resource
@@ -61,6 +62,14 @@ class Organization::BrandsController < ApplicationController
 
   def organization_brand
     @organization = Organization.find(params[:organization_id]) if params[:organization_id].present?
+  end
+
+  def process_territory_attrs
+    params[:brand][:territory_brands_attributes].values.each do |territor_attr|
+      logger.debug(">>>>>>>>>>")
+      logger.debug(territor_attr[:enable])
+      territor_attr[:_destroy] = true if territor_attr[:enable] != '1'
+    end
   end
 
 end

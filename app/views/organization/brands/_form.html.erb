@@ -62,6 +62,22 @@
 
       <div class="form-group">
         <p class="text-muted">
+          <small>Terretory Allocations</small>
+        </p>
+        <%= f.fields_for :territory_brands, @brand.initialized_terretories(@organization) do |builder| %>
+          <% territory = builder.object.territory %>
+          <%= builder.hidden_field :territory_id %>
+          <%if @brand.new_record?%>
+            <%= builder.check_box :enable, checked: true %>
+          <%else%>
+            <%= builder.check_box :enable%>
+          <%end%>
+            <%= builder.label :enable, territory.name %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <p class="text-muted">
           <small>Commissions</small>
         </p>
             <div class="input-group" data-role="acknowledge-input">

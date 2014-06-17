@@ -39,9 +39,16 @@ class Account < ActiveRecord::Base
     end
 
     def phone_or_city
-      if contact_informations.empty? && addresses.empty?
+      if contact_informations.empty?
+        if addresses.empty?
           errors.add(:contact_informations, 'must have phone')
+        end
+      elsif addresses.empty?
+        if contact_informations.empty?
+          errors.add(:addresses, 'must have city')
+        end
       end
+        
     end
     
 end

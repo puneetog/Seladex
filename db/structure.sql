@@ -216,6 +216,38 @@ ALTER SEQUENCE brand_statuses_id_seq OWNED BY brand_statuses.id;
 
 
 --
+-- Name: brand_territories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE brand_territories (
+    id integer NOT NULL,
+    brand_id integer,
+    territory_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: brand_territories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE brand_territories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: brand_territories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE brand_territories_id_seq OWNED BY brand_territories.id;
+
+
+--
 -- Name: brands; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -578,6 +610,38 @@ ALTER SEQUENCE territories_id_seq OWNED BY territories.id;
 
 
 --
+-- Name: territory_brands; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE territory_brands (
+    id integer NOT NULL,
+    brand_id integer,
+    territory_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: territory_brands_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE territory_brands_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: territory_brands_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE territory_brands_id_seq OWNED BY territory_brands.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -668,6 +732,13 @@ ALTER TABLE ONLY brand_statuses ALTER COLUMN id SET DEFAULT nextval('brand_statu
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY brand_territories ALTER COLUMN id SET DEFAULT nextval('brand_territories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY brands ALTER COLUMN id SET DEFAULT nextval('brands_id_seq'::regclass);
 
 
@@ -731,6 +802,13 @@ ALTER TABLE ONLY territories ALTER COLUMN id SET DEFAULT nextval('territories_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY territory_brands ALTER COLUMN id SET DEFAULT nextval('territory_brands_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -772,6 +850,14 @@ ALTER TABLE ONLY brand_accounts
 
 ALTER TABLE ONLY brand_statuses
     ADD CONSTRAINT brand_statuses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: brand_territories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY brand_territories
+    ADD CONSTRAINT brand_territories_pkey PRIMARY KEY (id);
 
 
 --
@@ -844,6 +930,14 @@ ALTER TABLE ONLY statuses
 
 ALTER TABLE ONLY territories
     ADD CONSTRAINT territories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: territory_brands_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY territory_brands
+    ADD CONSTRAINT territory_brands_pkey PRIMARY KEY (id);
 
 
 --
@@ -1014,3 +1108,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140613111848');
 INSERT INTO schema_migrations (version) VALUES ('20140613122324');
 
 INSERT INTO schema_migrations (version) VALUES ('20140617112257');
+
+INSERT INTO schema_migrations (version) VALUES ('20140617145751');
+
+INSERT INTO schema_migrations (version) VALUES ('20140617153308');

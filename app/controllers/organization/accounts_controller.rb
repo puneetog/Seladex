@@ -1,5 +1,6 @@
 class Organization::AccountsController < ApplicationController
 	before_filter :organization_account
+  before_filter :process_brands_attrs, only: [:create, :update]
 
   def new
     @organization = Organization.find(params[:organization_id])
@@ -55,7 +56,7 @@ class Organization::AccountsController < ApplicationController
   end
 
   def process_brands_attrs
-    params[:organization_account][:brand_accounts_attributes].values.each do |brand_attr|
+    params[:account][:brand_accounts_attributes].values.each do |brand_attr|
       brand_attr[:_destroy] = true if brand_attr[:enable] != '1'
     end
   end
