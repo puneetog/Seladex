@@ -302,6 +302,40 @@ ALTER SEQUENCE contact_informations_id_seq OWNED BY contact_informations.id;
 
 
 --
+-- Name: contact_people; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE contact_people (
+    id integer NOT NULL,
+    first_name character varying(255),
+    last_name character varying(255),
+    title character varying(255),
+    account_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: contact_people_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE contact_people_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: contact_people_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE contact_people_id_seq OWNED BY contact_people.id;
+
+
+--
 -- Name: organization_managements; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -648,6 +682,13 @@ ALTER TABLE ONLY contact_informations ALTER COLUMN id SET DEFAULT nextval('conta
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY contact_people ALTER COLUMN id SET DEFAULT nextval('contact_people_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY organization_managements ALTER COLUMN id SET DEFAULT nextval('organization_managements_id_seq'::regclass);
 
 
@@ -747,6 +788,14 @@ ALTER TABLE ONLY brands
 
 ALTER TABLE ONLY contact_informations
     ADD CONSTRAINT contact_informations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: contact_people_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY contact_people
+    ADD CONSTRAINT contact_people_pkey PRIMARY KEY (id);
 
 
 --
@@ -963,3 +1012,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140613094807');
 INSERT INTO schema_migrations (version) VALUES ('20140613111848');
 
 INSERT INTO schema_migrations (version) VALUES ('20140613122324');
+
+INSERT INTO schema_migrations (version) VALUES ('20140617112257');

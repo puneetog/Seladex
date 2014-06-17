@@ -1,5 +1,6 @@
 class Account < ActiveRecord::Base
 	has_many :contact_informations
+  has_many :contact_people
 	belongs_to :organization
 	has_many :brand_accounts
 	has_many :brands, through: :brand_accounts
@@ -8,7 +9,7 @@ class Account < ActiveRecord::Base
   validates :name, presence: true
 
 
-  accepts_nested_attributes_for :brand_accounts, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :brand_accounts,:contact_people, allow_destroy: true, reject_if: :all_blank
 
   accepts_nested_attributes_for :contact_informations, allow_destroy: true, :reject_if => proc {|attrs| attrs['phone'].blank? }
 
@@ -17,6 +18,7 @@ class Account < ActiveRecord::Base
   validate :phone_or_city  
 
    def build_associations(organization)
+      1.times { contact_people.build } if self.contact_people.empty?
       1.times { contact_informations.build } if self.contact_informations.empty?
       3.times { addresses.build } if self.addresses.empty?
       self
