@@ -7,10 +7,10 @@
 
 <div class="account_form">
   <span class="input-group-addon" data-role="acknowledgement">
-    <i>Location</i>
+    <i>Fax</i>
   </span>
-  <%= f.text_field :location, placeholder: "Location", class: "form-control" %>
-</div>
+  <%= f.text_field :fax, placeholder: "Fax", class: "form-control" %>
+ </div> 
 
 <div class="account_form">
   <span class="input-group-addon" data-role="acknowledgement">
@@ -25,12 +25,12 @@
   </span>
   <%= f.text_field :email, placeholder: "Email", class: "form-control" %>
 </div>
-
-<div class="account_form">
-  <span class="input-group-addon" data-role="acknowledgement">
-    <i>Fax</i>
-  </span>
-  <%= f.text_field :fax, placeholder: "Fax", class: "form-control" %>
- </div> 
  
+ <div class="account_form">
+  <span class="input-group-addon" data-role="acknowledgement">
+    <i>Location</i>
+  </span>
+  <%= f.text_field :location, placeholder: "Location", class: "form-control" %>
+</div>
+
 <p><%= f.link_to_remove "Remove this Contact" %></p>

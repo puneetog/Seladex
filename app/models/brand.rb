@@ -20,9 +20,9 @@ class Brand < ActiveRecord::Base
       organization_users.map{|user| user.name}.join(", ")
 	end
 
-	def representative_names
-      	status = self.statuses.sort_by{|s| s.time_frame.to_i}.first
-		return status.present? ? status.state : ''
+	def status
+  #     	status = self.statuses.sort_by{|s| s.time_frame.to_i}.first
+		# return status.present? ? status.state : ''
 	end
 
 	def build_statuses

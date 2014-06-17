@@ -34,6 +34,16 @@
         </div>
       </div> 
 
+      <div class="form-group">
+        <p class="text-muted">
+          <small>Contact Person</small>
+        </p>
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.fields_for :contact_people %>
+          <%= f.link_to_add "Add a Contact Person", :contact_people %>
+        </div>
+      </div>
+
         <div class="form-group">
         <p class="text-muted">
           <small>Contact Information</small>
