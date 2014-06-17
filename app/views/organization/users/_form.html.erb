@@ -1,4 +1,4 @@
-<%= form_for @org_user, :url => organization_organization_users_path(@organization)  do |f| %>
+<%= form_for @org_user, :url => @org_user.new_record? ? organization_organization_users_path(@organization) : organization_organization_user_path(@organization, @org_user)  do |f| %>
        <% if @org_user.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -65,16 +65,51 @@
             <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
           </div>
       </div>
-      <div class="form-group">
+
+       <div class="form-group">
       <p class="text-muted">
-        <small>User Permissions</small>
+        <small>Territory</small>
       </p>
+      <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_field :territory, required: "required", placeholder: "Territory", class: "form-control" %>
+           <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+          </div>
+      </div>
+
+      <div class="form-group">
       <div class="input-group" data-role="acknowledge-input">
           <%= f.simple_fields_for :organization_managements_attributes do |f_num| %>
           <%= render "organization_managements_fields", f_num: f_num%>
           <%end%>
           </div>
+      </div> 
+
+
+        <div class="form-group">
+      <p class="text-muted">
+        <small>Brands Allocations</small>
+      </p>
+      <div class="input-group" data-role="acknowledge-input">          
+          <%= f.fields_for :organization_user_brands, @org_user.initialized_brands(@organization) do |builder| %>
+            <% brand = builder.object.brand %>
+            <%= builder.hidden_field :brand_id %>
+
+            <div class="field">
+            <%= builder.label :enable, brand.name %>
+            <%= builder.check_box :enable %>
+            </div>           
+          <% end %>
+
+
+          </div>
       </div>
+
+
+
+
+
+
    </div>
     <div class="form-group clear">
       <%= f.submit "Save", class: "btn btn-default btn-lg"%>

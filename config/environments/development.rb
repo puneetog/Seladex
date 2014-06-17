@@ -41,6 +41,4 @@ Seladex::Application.configure do
     :password             => 'vishu123',
     :authentication       => 'login',
     :enable_starttls_auto => true  }
-
-    
 end

@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable#, :confirmable
 
   # validates :name, presence: true
+
+  has_many :roles, dependent: :destroy
+
   ROLES = [:admin, :organization_admin, :organization_user]
   
   

@@ -1,0 +1,13 @@
+    <div>
+		<p class="brand_name" style="font-size:16px;">
+			<%=f.collection_select :brand_id, Brand.all, :id, :name, {:prompt => 'Select Brand'}, required: "required", :class=>"brand_select"%>
+		</p>
+	</div>
+	<%= f.link_to_remove "Remove Brand"%>
+	<script>
+		var len = $(".brand_name").length;
+		var brand_count = "<%=@brand_count%>";
+		if(len == brand_count){
+			$(".brand_acc .add_nested_fields").remove();
+		}
+	</script>

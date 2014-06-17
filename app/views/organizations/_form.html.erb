@@ -1,4 +1,4 @@
-<%= form_for @organization, url: @organization.new_record? ? organizations_path : organization_path(@organization) do |f| %>
+<%= form_for @organization, url: @organization.new_record? ? organizations_path : organization_path(@organization, :html => { :multipart => true }) do |f| %>
        <% if @organization.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -15,6 +15,16 @@
 
             <div class="well cust_form">
                   <div class="pull-left col-md-5">
+                    <div class="form-group">
+                    <p class="text-muted">
+                      <small>Company Name</small>
+                    </p>
+                    <div class="input-group" data-role="acknowledge-input">
+                      <%= f.text_field :company_name, required: "required", placeholder: "Company Name", class: "form-control" %>
+                       <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
+                        <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+                    </div>
+                  </div>
                   <div class="form-group">
                     <p class="text-muted">
                       <small>Website</small>
@@ -81,12 +91,28 @@
                         </div>
 
                  <% end %>
+                  <div class="form-group">
+                    <p class="text-muted">
+                      <small>Logo</small>
+                    </p>
+                    <div class="input-group" data-role="acknowledge-input">
+                       <%= f.file_field :logo, class: "form-control" %>                       
+                    </div>
+                  </div>  
+                
                  </div>
+
+
+
                 <% i = 0 %> 
                 <div class="pull-right col-md-5">
-                <%= f.fields_for :organization_addresses do |org_address| %>  
-                   <% address_type = OrganizationAddress::ADDRESS_TYPE[i] %>        
-                   <%= org_address.hidden_field :address_type, value: address_type %>               
+                <%= f.fields_for :addresses do |org_address| %>  
+                   <% address_type = Address::ADDRESS_TYPE[i] %>        
+                   <%= org_address.hidden_field :address_type, value: address_type %>
+                   <% if i==1 %>
+                     <%= check_box_tag "copy_mailing_address" %>
+                     Same as mailing address
+                   <% end %>
                    <% i = i + 1 %>
                 <div class="address_form"> 
                   <h4><%= address_type %></h4>
@@ -95,7 +121,7 @@
                       <small>Address</small>
                     </p>
                     <div class="input-group" data-role="acknowledge-input">
-                      <%= org_address.text_field :address, required: "required", placeholder: "Address", class: "form-control" %>
+                      <%= org_address.text_field :address, required: "required", placeholder: "Address", class: "form-control", id: "address_#{address_type}" %>
                        <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
                         <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
                     </div>
@@ -107,7 +133,7 @@
                       <small>City</small>
                     </p>
                     <div class="input-group" data-role="acknowledge-input">
-                      <%= org_address.text_field :city, required: "required", placeholder: "City", class: "form-control" %>
+                      <%= org_address.text_field :city, required: "required", placeholder: "City", class: "form-control", id: "city_#{address_type}" %>
                        <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
                         <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
                     </div>
@@ -118,7 +144,7 @@
                       <small>State</small>
                     </p>
                     <div class="input-group" data-role="acknowledge-input">
-                      <%= org_address.text_field :state, required: "required", placeholder: "State", class: "form-control" %>
+                      <%= org_address.text_field :state, required: "required", placeholder: "State", class: "form-control", id: "state_#{address_type}" %>
                        <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
                         <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
                     </div>
@@ -129,7 +155,7 @@
                       <small>Zip</small>
                     </p>
                     <div class="input-group" data-role="acknowledge-input">
-                      <%= org_address.text_field :zip, required: "required", placeholder: "Zip", class: "form-control" %>
+                      <%= org_address.text_field :zip, required: "required", placeholder: "Zip", class: "form-control", id: "zip_#{address_type}" %>
                        <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
                         <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
                     </div>
@@ -140,7 +166,7 @@
                       <small>Country</small>
                     </p>
                     <div class="input-group" data-role="acknowledge-input">
-                      <%= org_address.text_field :country, required: "required", placeholder: "Country", class: "form-control" %>
+                      <%= org_address.text_field :country, required: "required", placeholder: "Country", class: "form-control", id: "country_#{address_type}" %>
                        <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
                         <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
                     </div>
@@ -150,7 +176,7 @@
                       <small>Phone</small>
                     </p>
                     <div class="input-group" data-role="acknowledge-input">
-                      <%= org_address.text_field :phone, required: "required", placeholder: "Phone", class: "form-control" %>
+                      <%= org_address.text_field :phone, required: "required", placeholder: "Phone", class: "form-control", id: "phone_#{address_type}" %>
                        <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
                         <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
                     </div>
@@ -160,7 +186,7 @@
                       <small>Fax</small>
                     </p>
                     <div class="input-group" data-role="acknowledge-input">
-                      <%= org_address.text_field :fax, required: "required", placeholder: "Fax", class: "form-control" %>
+                      <%= org_address.text_field :fax, required: "required", placeholder: "Fax", class: "form-control", id: "fax_#{address_type}" %>
                        <!--  <input type="text" required="required" placeholder="Any Text Required" class="form-control" data-type="text" > -->
                         <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
                     </div>

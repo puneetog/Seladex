@@ -1,0 +1,16 @@
+<table border="1" class="role_permission">
+	<tr>
+		<th>Name</th>
+		<th>Status</th>
+		<th>Reps</th>
+		<th>Territory</th>
+	</tr>
+	<%@account.brands.each do |ba|%>
+		<tr>
+			<td><%=ba.name%></td>
+			<td><%=ba.status%></td>
+			<td><%=ba.representative_names%></td>
+			<td><%=ba.territory%></td>
+		</tr>
+	<%end%>
+</table>

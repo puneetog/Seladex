@@ -1,0 +1,35 @@
+ <div class="well">
+ 	  	<div style="width: 20%">
+ 	 	<%= link_to "Add Brand", new_organization_organization_brand_path(@organization), class: "dbtn big twitter-big no-image btn-block"  %>	</div>
+ 	
+	                    	<div class="header">Brand Table </div>
+	                    	
+	                    	<div class="table-responsive">
+	                    		<table class="table table-hover">
+	                                <thead>
+	                                    <tr>
+	                                        <th>Name</th>
+	                                        <th>Date registered</th>
+	                                        <th>Commission Rate</th>
+	                                        <th>Territory</th>
+	                                        
+	                                        <th></th>
+	                                    </tr>
+	                                </thead>
+	                                <tbody>
+	                                	<% @organization.brands.each do |brand| %>
+		                                    <tr>
+		                                        <td><%= brand.name %> </td>
+		                                        <td><%= brand.created_at.strftime("%Y/%m/%d") %></td>
+		                                        <td><%= brand.commission_rate %></td>              
+		                                        <td><%= brand.territory %></td>                                                  
+		                                        <td>
+		                                        	<%= link_to "Show", organization_organization_brand_path(@organization,brand) %>
+		                                        </td>                              
+		                                    </tr>
+	                                    <% end %>
+	                                    
+	                                </tbody>
+	                            </table>
+	                    	</div>
+	                    	</div>

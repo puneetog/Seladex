@@ -45,9 +45,10 @@ gem 'cancan'
 
 group :development do
 	gem 'pry'
+	gem 'quiet_assets'
 end
 gem 'activerecord-postgres-hstore'
-
+gem "paperclip", "~> 4.1"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

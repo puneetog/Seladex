@@ -1,0 +1,24 @@
+<table border="1" class="role_permission">
+	<tr>
+		<th></th>
+		<th>Name</th>
+		<th>Address</th>
+		<th>City</th>
+		<th>State</th>
+		<th>Zip</th>
+		<th>Country</th>
+		
+
+	</tr>
+	<%@account.addresses.each do |add|%>
+		<tr>
+			<td><%=add.address_type%></td>
+			<td><%=@account.name.humanize%></td>
+			<td><%=add.address%></td>
+			<td><%=add.city%></td>
+			<td><%=add.state%></td>
+			<td><%=add.zip%></td>
+			<td><%=add.country%></td>
+		</tr>
+	<%end%>
+</table>

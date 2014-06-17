@@ -1,0 +1,36 @@
+<div class="account_form">
+  <span class="input-group-addon" data-role="acknowledgement">
+    <i>Phone</i>
+  </span>
+  <%= f.text_field :phone, placeholder: "Phone", class: "form-control" %>
+</div>
+
+<div class="account_form">
+  <span class="input-group-addon" data-role="acknowledgement">
+    <i>Fax</i>
+  </span>
+  <%= f.text_field :fax, placeholder: "Fax", class: "form-control" %>
+ </div> 
+
+<div class="account_form">
+  <span class="input-group-addon" data-role="acknowledgement">
+    <i> Website</i>
+  </span>
+  <%= f.text_field :website, placeholder: "Website", class: "form-control" %>
+</div>
+
+<div class="account_form">
+  <span class="input-group-addon" data-role="acknowledgement">
+    <i>Email</i>
+  </span>
+  <%= f.text_field :email, placeholder: "Email", class: "form-control" %>
+</div>
+ 
+ <div class="account_form">
+  <span class="input-group-addon" data-role="acknowledgement">
+    <i>Location</i>
+  </span>
+  <%= f.text_field :location, placeholder: "Location", class: "form-control" %>
+</div>
+
+<p><%= f.link_to_remove "Remove this Contact" %></p>

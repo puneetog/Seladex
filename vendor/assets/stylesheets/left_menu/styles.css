@@ -3122,3 +3122,43 @@ body.modal-open,
 /* News Styles */
 .news .sidebar,
 .news .content { padding: 0 35px; } }
+
+.role_permission td {
+	padding: 5px 27px 6px 27px;
+}
+
+.role_permission th {
+	padding: 5px;
+}
+
+.account_form{
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.addresses{
+	float: left;
+	width: 30%;
+	margin-right: 26px;
+}
+
+.address_same_btn{
+	margin: -30px 3px 0 0;
+	float: left;
+}
+
+.brand_select{
+	width: 189px;
+	height: 44px;
+	padding: 6PX;
+}
+
+.org_lft_col{width: 40%; float: left;}
+.org_lft_col img{float: left; margin-right: 10px;}
+.org_lft_col h3{float: left; font-size: 18px;}
+
+.org_rht_col{float: right; width: auto;}
+.org_rht_col span{float: left}
+.clear{clear: both}
+.box_border{border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 10px; float: left; width: 100%}

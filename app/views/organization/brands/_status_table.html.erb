@@ -1,0 +1,31 @@
+<!-- <div class="well"> -->
+
+ 	
+	                    	<div class="header">Status </div>
+	                    	
+	                    	<!-- <div class="table-responsive"> -->
+	                    		<table class="table table-hover">
+	                                <thead>
+	                                    <tr>
+	                                        <th>State</th>	                                        
+	                                        <th>Condition</th>
+	                                        <th>Rule</th>	                                        
+	                                        <th></th>	                                        
+	                                       
+	                                    </tr>
+	                                </thead>
+	                                <tbody>
+	                                	<% @brand.brand_statuses.each do |status| %>
+		                                    <tr>
+		                                        <td><%= status.state %>=</td>		                                        
+		                                        <td><%= status.condition %> <%= status.duration %> days</td>              
+		                                        <td><%= status.rule %></td>                                      
+		                                        <td><%#= link_to "Delete",  %></td>                                      
+		                                                                      
+		                                    </tr>
+	                                    <% end %>
+	                                    
+	                                </tbody>
+	                            </table>
+	                    	<!-- </div> -->
+	                    	<!-- </div> -->

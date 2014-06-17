@@ -40,7 +40,7 @@
 
                 <% if can? :create, Organization %>
                      <li>
-                        <% organization_path = current_user.admin? ? organizations_path : edit_organization_path(current_user.organizations.first)%>
+                        <% organization_path = current_user.admin? ? organizations_path : organization_path(current_organization_admin.organizations.first)%>
                         <%= link_to organization_path, title: "Organization" do %>
                             Organization 
                             <div>

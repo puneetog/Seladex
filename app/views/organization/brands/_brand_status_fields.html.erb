@@ -1,0 +1,51 @@
+
+	<div class="clear">
+
+	  <div class="form-group col-md-3">
+        <p class="text-muted">
+          <small>State</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_field :state, required: "required", placeholder: "State", class: "form-control" %>
+            
+        </div>
+      </div> 
+
+      <div class="form-group col-md-3">
+        <p class="text-muted">
+          <small>Condition</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.select :condition, options_for_select([[">"],["<"],["="]]),{}, class: "form-control" %>
+            
+        </div>
+      </div>
+
+      <div class="form-group col-md-2">
+        <p class="text-muted">
+          <small>Duration(days)</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+        	<%= f.select :duration, options_for_select([["30"],["60"],["90"]]),{}, class: "form-control" %>
+          
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <p class="text-muted">
+          <small>Rule</small>
+        </p>
+        
+        <div class="input-group" data-role="acknowledge-input">
+        	 <%= f.text_field :rule, required: "required", placeholder: "Rule", class: "form-control" %>         
+        </div>
+      </div> 
+
+		
+	</div>
+
+	    
+		<p><%= f.link_to_remove "Remove this Status" %></p>

@@ -1,0 +1,80 @@
+<div class="well cust_form col-md-5" style="width: 100%">
+  <%= nested_form_for @account, :url => @account.new_record? ? organization_organization_accounts_path(@organization) : organization_organization_account_path(@organization, @account)  do |f| %>
+         <% if @account.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@account.errors.count, "error") %> prohibited
+          this User from being saved:
+        </h2>
+        <ul>
+          <% @account.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>        
+      <div style="margin: 0 auto">
+        <div class="form-group">
+          <p class="text-muted">
+            <small>Account Name</small>
+          </p>
+          <div class="input-group" data-role="acknowledge-input">
+            <%= f.text_field :name, required: "required", placeholder: "Account Name", class: "form-control" %>
+              <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+          </div>
+        </div>
+      
+      <div class="form-group">
+        <p class="text-muted">
+          <small>General notes</small>
+        </p>
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.text_field :general_note, required: "required", placeholder: "General Note", class: "form-control" %>
+            <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
+        </div>
+      </div> 
+
+      <div class="form-group">
+        <p class="text-muted">
+          <small>Contact Person</small>
+        </p>
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.fields_for :contact_people %>
+          <%= f.link_to_add "Add a Contact Person", :contact_people %>
+        </div>
+      </div>
+
+        <div class="form-group">
+        <p class="text-muted">
+          <small>Contact Information</small>
+        </p>
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.fields_for :contact_informations %>
+          <p style="float:left">
+            <%= f.link_to_add "Add a Contact", :contact_informations %>
+          </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <p class="text-muted">
+          <small>Brands</small>
+        </p>
+        <div class="input-group" data-role="acknowledge-input">
+          <%= f.fields_for :brand_accounts %>
+          <p style="float:left" class="brand_acc">
+            <%= f.link_to_add "Add Brand", :brand_accounts %>
+          </p>
+        </div>
+      </div>
+
+      <!-- <div class="form-group"> -->
+       
+     <!-- </div> -->
+     <%=render "common_templates/address_fields", f: f%>
+      <div class="form-group clear">
+        <%= f.submit "Save", class: "btn btn-default btn-lg"%>
+      </div>
+      </div>
+<% end %>
+</div>
