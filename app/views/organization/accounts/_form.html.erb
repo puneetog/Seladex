@@ -19,7 +19,7 @@
             <small>Account Name</small>
           </p>
           <div class="input-group" data-role="acknowledge-input">
-            <%= f.text_field :name, required: "required", placeholder: "Account Name", class: "form-control" %>
+            <%= f.text_field :name, placeholder: "Account Name", class: "form-control" %>
               <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
           </div>
         </div>
@@ -29,7 +29,7 @@
           <small>General notes</small>
         </p>
         <div class="input-group" data-role="acknowledge-input">
-          <%= f.text_field :general_note, required: "required", placeholder: "General Note", class: "form-control" %>
+          <%= f.text_field :general_note, placeholder: "General Note", class: "form-control" %>
             <span class="input-group-addon" data-role="acknowledgement"><i></i></span>
         </div>
       </div> 
@@ -48,15 +48,27 @@
 
       <div class="form-group">
         <p class="text-muted">
-          <small>Brands</small>
+          <small>Brands Allocations</small>
         </p>
-        <div class="input-group" data-role="acknowledge-input">
-          <%= f.fields_for :brand_accounts %>
+        <%= f.fields_for :brand_accounts, @account.initialized_brands(@organization) do |builder| %>
+          <% brand = builder.object.brand %>
+          <%= builder.hidden_field :brand_id %>
+          <%if @account.new_record?%>asdasd
+            <%= builder.check_box :enable, checked: true %>
+          <%else%>
+            <%= builder.check_box :enable%>
+          <%end%>
+            <%= builder.label :enable, brand.name %>
+        <% end %>
+      </div>
+
+        <!-- <div class="input-group" data-role="acknowledge-input">
+          <%#= f.fields_for :brand_accounts %>
           <p style="float:left" class="brand_acc">
-            <%= f.link_to_add "Add Brand", :brand_accounts %>
+            <%#= f.link_to_add "Add Brand", :brand_accounts %>
           </p>
         </div>
-      </div>
+      </div> -->
 
       <!-- <div class="form-group"> -->
        
